@@ -30,5 +30,13 @@ namespace SilowniaProjektWPF.DAL.Models
         {
             return HashCode.Combine(Name, Surname, PhoneNumber, PassNumber);
         }
+
+        public static bool operator ==(Client c1, Client c2)
+        {
+            if (c1 is null && c2 is null) return true;
+
+            return !(c1 is null) && c1.Equals(c2);
+        }
+        public static bool operator !=(Client c1, Client c2) => !(c1 == c2);
     }
 }

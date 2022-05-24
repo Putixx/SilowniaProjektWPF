@@ -28,5 +28,13 @@ namespace SilowniaProjektWPF.DAL.Models
         {
             return HashCode.Combine(PassNumber, PassType);
         }
+
+        public static bool operator ==(Pass p1, Pass p2)
+        {
+            if (p1 is null && p2 is null) return true;
+
+            return !(p1 is null) && p1.Equals(p2);
+        }
+        public static bool operator !=(Pass p1, Pass p2) => !(p1 == p2);
     }
 }

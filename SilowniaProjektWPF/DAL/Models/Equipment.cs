@@ -27,5 +27,13 @@ namespace SilowniaProjektWPF.DAL.Models
         {
             return HashCode.Combine(Name);
         }
+
+        public static bool operator ==(Equipment e1, Equipment e2)
+        {
+            if (e1 is null && e2 is null) return true;
+
+            return !(e1 is null) && e1.Equals(e2);
+        }
+        public static bool operator !=(Equipment e1, Equipment e2) => !(e1 == e2);
     }
 }
