@@ -5,14 +5,14 @@ namespace SilowniaProjektWPF.DAL.Models
     public class Reservation
     {
         public string PassNumber { get; }
-        public Instructor Instructor { get; }
+        public string InstructorIndex { get; }
         public DateTime StartDate { get; }
         public DateTime EndDate { get; }
 
-        public Reservation(string PassNumber, Instructor Instructor, DateTime StartDate, DateTime EndDate)
+        public Reservation(string PassNumber, string InstructorIndex, DateTime StartDate, DateTime EndDate)
         {
             this.PassNumber = PassNumber;
-            this.Instructor = Instructor;
+            this.InstructorIndex = InstructorIndex;
             this.StartDate = StartDate;
             this.EndDate = EndDate;
         }
@@ -21,19 +21,19 @@ namespace SilowniaProjektWPF.DAL.Models
         {
             return obj is Reservation rezervation &&
                 PassNumber == rezervation.PassNumber &&
-                Instructor == rezervation.Instructor &&
+                InstructorIndex == rezervation.InstructorIndex &&
                 StartDate == rezervation.StartDate &&
                 EndDate == rezervation.EndDate;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(PassNumber, Instructor, StartDate, EndDate);
+            return HashCode.Combine(PassNumber, InstructorIndex, StartDate, EndDate);
         }
 
         public bool Conflicts(Reservation reservation)
         {
-            if (reservation.Instructor != Instructor) return false;
+            if (reservation.InstructorIndex != InstructorIndex) return false;
 
             return reservation.StartDate < EndDate && reservation.EndDate > StartDate;
         }

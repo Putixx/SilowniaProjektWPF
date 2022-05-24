@@ -4,14 +4,16 @@ namespace SilowniaProjektWPF.DAL.Models
 {
     public class Instructor
     {
+        public string InstructorIndex { get; }
         public string Name { get; }
         public string Surname { get; }
         public string PhoneNumber { get; }
         public string Specialization { get; }
         public decimal HourlyCost { get; }
 
-        public Instructor(string Name, string Surname, string PhoneNumber, string Specialization, decimal HourlyCost)
+        public Instructor(string InstructorIndex, string Name, string Surname, string PhoneNumber, string Specialization, decimal HourlyCost)
         {
+            this.InstructorIndex = InstructorIndex;
             this.Name = Name;
             this.Surname = Surname;
             this.PhoneNumber = PhoneNumber;
@@ -22,6 +24,7 @@ namespace SilowniaProjektWPF.DAL.Models
         public override bool Equals(object obj)
         {
             return obj is Instructor instructor &&
+                InstructorIndex == instructor.InstructorIndex &&
                 Name == instructor.Name &&
                 Surname == instructor.Surname &&
                 PhoneNumber == instructor.PhoneNumber &&
@@ -30,7 +33,7 @@ namespace SilowniaProjektWPF.DAL.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Name, Surname, PhoneNumber, Specialization);
+            return HashCode.Combine(InstructorIndex, Name, Surname, PhoneNumber, Specialization);
         }
 
         public static bool operator ==(Instructor i1, Instructor i2)
