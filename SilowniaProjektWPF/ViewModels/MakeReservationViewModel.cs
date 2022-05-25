@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SilowniaProjektWPF.Commands;
+using SilowniaProjektWPF.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +33,7 @@ namespace SilowniaProjektWPF.ViewModels
             }
         }
 
-        private DateTime _startDate;
+        private DateTime _startDate = new DateTime(2022, 1, 1);
         public DateTime StartDate
         {
             get => _startDate;
@@ -42,7 +44,7 @@ namespace SilowniaProjektWPF.ViewModels
             }
         }
 
-        private DateTime _endDate;
+        private DateTime _endDate = new DateTime(2022, 1, 1);
         public DateTime EndDate
         {
             get => _endDate;
@@ -54,8 +56,12 @@ namespace SilowniaProjektWPF.ViewModels
         }
 
         public ICommand SubmitCommand { get; }
-        public ICommand CencelCommand { get; }
+        public ICommand CancelCommand { get; }
 
-        public MakeReservationViewModel() { }
+        public MakeReservationViewModel(Gym Gym) 
+        {
+            SubmitCommand = new MakeReservationCommand(this, Gym);
+            CancelCommand = new CancelReservationCommand();
+        }
     }
 }

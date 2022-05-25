@@ -19,11 +19,11 @@ namespace SilowniaProjektWPF.DAL.Models
 
         public override bool Equals(object obj)
         {
-            return obj is Reservation rezervation &&
-                PassNumber == rezervation.PassNumber &&
-                InstructorIndex == rezervation.InstructorIndex &&
-                StartDate == rezervation.StartDate &&
-                EndDate == rezervation.EndDate;
+            return obj is Reservation reservation &&
+                PassNumber == reservation.PassNumber &&
+                InstructorIndex == reservation.InstructorIndex &&
+                StartDate == reservation.StartDate &&
+                EndDate == reservation.EndDate;
         }
 
         public override int GetHashCode()
@@ -35,7 +35,7 @@ namespace SilowniaProjektWPF.DAL.Models
         {
             if (reservation.InstructorIndex != InstructorIndex) return false;
 
-            return reservation.StartDate < EndDate && reservation.EndDate > StartDate;
+            return reservation.StartDate <= EndDate && reservation.EndDate >= StartDate;
         }
 
         public static bool operator ==(Reservation r1, Reservation r2)
