@@ -14,22 +14,33 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class ReservationListingViewModel : ViewModelBase
     {
+        private readonly Gym _gym;
         private readonly ObservableCollection<ReservationViewModel> _reservations;
 
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
 
         public ICommand NewReservationCommand { get; }
 
-        public ReservationListingViewModel(NavigationService ReservationNavigationService)
+        public ReservationListingViewModel(Gym gym, NavigationService ReservationNavigationService)
         {
+            _gym = gym;
             _reservations = new ObservableCollection<ReservationViewModel>();
 
             NewReservationCommand = new NavigateCommand(ReservationNavigationService);
 
+            UpdateReservations();
+        }
 
-            _reservations.Add(new ReservationViewModel(new Reservation("123", "D25", DateTime.Now, DateTime.Now)));
-            _reservations.Add(new ReservationViewModel(new Reservation("12", "D253", DateTime.Now, DateTime.Now)));
-            _reservations.Add(new ReservationViewModel(new Reservation("32", "D225", DateTime.Now, DateTime.Now)));
+        private void UpdateReservations()
+        {
+            _reservations.Clear();
+
+            foreach(Reservation reservation in _gym.GetAllReservations())
+            {
+                ReservationViewModel reservationViewModel = new ReservationViewModel(reservation);
+
+                _reservations.Add(reservationViewModel);
+            }
         }
     }
 }

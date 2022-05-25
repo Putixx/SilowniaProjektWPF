@@ -18,6 +18,11 @@ namespace SilowniaProjektWPF.DAL.Models
             return _reservations.Where(r => r.InstructorIndex == InstructorIndex);
         }
 
+        public IEnumerable<Reservation> GetReservations()
+        {
+            return _reservations;
+        }
+
         public void AddReservation(Reservation reservation)
         {
             foreach(Reservation existingReservation in _reservations)

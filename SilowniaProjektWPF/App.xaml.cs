@@ -46,7 +46,7 @@ namespace SilowniaProjektWPF
 
         private ReservationListingViewModel CreateReservationViewModel()
         {
-            return new ReservationListingViewModel(new NavigationService(_navigationStore, CreateMakeReservationViewModel));
+            return new ReservationListingViewModel(_gym, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
         }
     }
 }
