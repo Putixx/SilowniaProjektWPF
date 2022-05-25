@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SilowniaProjektWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,6 +16,12 @@ namespace SilowniaProjektWPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel()
+            };
+            MainWindow.Show();
+
             base.OnStartup(e);
         }
     }

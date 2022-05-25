@@ -34,7 +34,7 @@
             <TextBox 
                 Grid.Row="1" 
                 Margin="10 5 0 0"
-                Text="{Binding PassNumber}" />
+                Text="{Binding PassNumber, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="2" Margin="0 10 0 0">
@@ -50,7 +50,7 @@
             <TextBox 
                 Grid.Row="1" 
                 Margin="10 5 0 0"
-                Text="{Binding InstructorIndex}" />
+                Text="{Binding InstructorIndex, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="3" Margin="0 10 0 0">
@@ -73,7 +73,7 @@
                 Grid.Row="1" 
                 Grid.Column="0"
                 Margin="10 5 0 0"
-                SelectedDate="{Binding StartDate}" />
+                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock 
                 Grid.Row="0" 
@@ -84,7 +84,7 @@
                 Grid.Row="1" 
                 Grid.Column="1"
                 Margin="10 5 0 0"
-                SelectedDate="{Binding EndDate}" />
+                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <StackPanel 
