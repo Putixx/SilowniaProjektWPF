@@ -1,5 +1,6 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
+using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;
         private readonly Gym _gym;
+        private readonly NavigationService _reservationNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, Gym Gym)
+        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, Gym Gym, NavigationService ReservationNavigationService)
         {
             _makeReservationViewModel = MakeReservationViewModel;
             _gym = Gym;
+            _reservationNavigationService = ReservationNavigationService;
 
             _makeReservationViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }

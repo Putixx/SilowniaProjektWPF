@@ -1,4 +1,5 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
+using SilowniaProjektWPF.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,19 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; }
+        private readonly NavigationStore _navigationStore;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
-        public MainViewModel(Gym Gym)
+        public MainViewModel(NavigationStore NavigationStore)
         {
-            CurrentViewModel = new MakeReservationViewModel(Gym);
+            _navigationStore = NavigationStore;
+
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }

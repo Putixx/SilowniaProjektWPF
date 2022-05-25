@@ -1,5 +1,7 @@
 ﻿using SilowniaProjektWPF.Commands;
 using SilowniaProjektWPF.DAL.Models;
+using SilowniaProjektWPF.Services;
+using SilowniaProjektWPF.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,10 +60,10 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public MakeReservationViewModel(Gym Gym) 
+        public MakeReservationViewModel(Gym Gym, NavigationService ReservationNavigationService) 
         {
-            SubmitCommand = new MakeReservationCommand(this, Gym);
-            CancelCommand = new CancelReservationCommand();
+            SubmitCommand = new MakeReservationCommand(this, Gym, ReservationNavigationService);
+            CancelCommand = new NavigateCommand(ReservationNavigationService);
         }
     }
 }

@@ -26,9 +26,9 @@
 
             <Button 
                 Grid.Column="1" 
-                Content="Back"
+                Content="Make new reservation"
                 Margin="25 0 0 0" 
-                Command="{Binding BackCommand}" />
+                Command="{Binding NewReservationCommand}" />
         </Grid>
 
         <ListView 
