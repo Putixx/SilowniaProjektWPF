@@ -1,5 +1,10 @@
-﻿using SilowniaProjektWPF.DAL.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SilowniaProjektWPF.DAL.Contexts;
+using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Services;
+using SilowniaProjektWPF.Services.ReservationConflictValidators;
+using SilowniaProjektWPF.Services.ReservationCreators;
+using SilowniaProjektWPF.Services.ReservationProviders;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
@@ -17,17 +22,30 @@ namespace SilowniaProjektWPF
     /// </summary>
     public partial class App : Application
     {
+        private const string CONNECTION_STRING = "Data Source=gym.db";
         private readonly Gym _gym;
         private readonly NavigationStore _navigationStore;
+        private readonly GymDbContextFactory _gymDbContextFactory;
 
         public App()
         {
-            _gym = new Gym("Strong Gym");
+            _gymDbContextFactory = new GymDbContextFactory(CONNECTION_STRING);
+            IReservationProvider reservationProvider = new ReservationProvider(_gymDbContextFactory);
+            IReservationCreator reservationCreator = new ReservationCreator(_gymDbContextFactory);
+            IReservationConflictValidator reservationConflictValidator = new ReservationConflictValidator(_gymDbContextFactory);
+
+            ReservationBook reservationBook = new ReservationBook(reservationProvider, reservationCreator, reservationConflictValidator);
+            _gym = new Gym("Strong Gym", reservationBook);
             _navigationStore = new NavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            using (GymDbContext dbContext = _gymDbContextFactory.CreateDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+
             _navigationStore.CurrentViewModel = CreateReservationViewModel();
 
             MainWindow = new MainWindow()
@@ -46,7 +64,7 @@ namespace SilowniaProjektWPF
 
         private ReservationListingViewModel CreateReservationViewModel()
         {
-            return new ReservationListingViewModel(_gym, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
+            return ReservationListingViewModel.LoadViewModel(_gym, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
         }
     }
 }

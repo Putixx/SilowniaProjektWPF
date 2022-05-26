@@ -20,6 +20,7 @@ namespace SilowniaProjektWPF.ViewModels
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
 
         public ICommand NewReservationCommand { get; }
+        public ICommand LoadReservationCommand { get; }
 
         public ReservationListingViewModel(Gym gym, NavigationService ReservationNavigationService)
         {
@@ -27,15 +28,23 @@ namespace SilowniaProjektWPF.ViewModels
             _reservations = new ObservableCollection<ReservationViewModel>();
 
             NewReservationCommand = new NavigateCommand(ReservationNavigationService);
-
-            UpdateReservations();
+            LoadReservationCommand = new LoadReservationsCommand(gym, this);
         }
 
-        private void UpdateReservations()
+        public static ReservationListingViewModel LoadViewModel(Gym gym, NavigationService makeReservationNavigationService)
+        {
+            ReservationListingViewModel viewModel = new ReservationListingViewModel(gym, makeReservationNavigationService);
+
+            viewModel.LoadReservationCommand.Execute(null);
+
+            return viewModel;
+        }
+
+        public void UpdateReservations(IEnumerable<Reservation> reservations)
         {
             _reservations.Clear();
 
-            foreach(Reservation reservation in _gym.GetAllReservations())
+            foreach(Reservation reservation in reservations)
             {
                 ReservationViewModel reservationViewModel = new ReservationViewModel(reservation);
 

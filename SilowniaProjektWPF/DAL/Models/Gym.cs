@@ -11,25 +11,25 @@ namespace SilowniaProjektWPF.DAL.Models
         private readonly ReservationBook _reservationBook;
         public string Name { get; }
 
-        public Gym(string Name)
+        public Gym(string Name, ReservationBook reservationBook)
         {
             this.Name = Name;
-            _reservationBook = new ReservationBook();
+            _reservationBook = reservationBook;
         }
 
-        public IEnumerable<Reservation> GetReservationsForInstructor(string InstructorIndex)
+        public void GetReservationsForInstructor(string InstructorIndex)
         {
-            return _reservationBook.GetReservationsForInstructorIndex(InstructorIndex);
+            _reservationBook.GetReservationsForInstructorIndex(InstructorIndex);
         }
 
-        public IEnumerable<Reservation> GetAllReservations()
+        public async Task<IEnumerable<Reservation>> GetAllReservations()
         {
-            return _reservationBook.GetReservations();
+            return await _reservationBook.GetReservations();
         }
 
-        public void MakeReservation(Reservation reservation)
+        public async Task MakeReservation(Reservation reservation)
         {
-            _reservationBook.AddReservation(reservation);
+            await _reservationBook.AddReservation(reservation);
         }
     }
 }

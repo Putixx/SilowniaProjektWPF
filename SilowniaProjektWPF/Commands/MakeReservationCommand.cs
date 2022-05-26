@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
-    public class MakeReservationCommand : CommandBase
+    public class MakeReservationCommand : AsyncCommandBase
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;
         private readonly Gym _gym;
@@ -32,7 +32,7 @@ namespace SilowniaProjektWPF.Commands
             return !string.IsNullOrEmpty(_makeReservationViewModel.PassNumber) && !string.IsNullOrEmpty(_makeReservationViewModel.InstructorIndex) && base.CanExecute(parameter);
         }
 
-        public override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
             Reservation reservation = new Reservation(
                 _makeReservationViewModel.PassNumber,
@@ -43,12 +43,16 @@ namespace SilowniaProjektWPF.Commands
 
             try
             {
-                _gym.MakeReservation(reservation);
+                await _gym.MakeReservation(reservation);
                 MessageBox.Show("Successfuly reserved.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(ReservationConflictException)
             {
                 MessageBox.Show("Already reserved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to make reservation.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

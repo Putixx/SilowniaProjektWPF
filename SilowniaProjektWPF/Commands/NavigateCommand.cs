@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Commands
 {
-    public class NavigateCommand: CommandBase
+    public class NavigateCommand: AsyncCommandBase
     {
         private readonly NavigationService _navigationService;
 
