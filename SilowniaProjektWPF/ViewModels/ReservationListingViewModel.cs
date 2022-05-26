@@ -14,7 +14,7 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class ReservationListingViewModel : ViewModelBase
     {
-        private readonly Gym _gym;
+        private readonly GymStore _gymStore;
         private readonly ObservableCollection<ReservationViewModel> _reservations;
 
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
@@ -22,18 +22,18 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand NewReservationCommand { get; }
         public ICommand LoadReservationCommand { get; }
 
-        public ReservationListingViewModel(Gym gym, NavigationService ReservationNavigationService)
+        public ReservationListingViewModel(GymStore gymStore, NavigationService ReservationNavigationService)
         {
-            _gym = gym;
+            _gymStore = gymStore;
             _reservations = new ObservableCollection<ReservationViewModel>();
 
             NewReservationCommand = new NavigateCommand(ReservationNavigationService);
-            LoadReservationCommand = new LoadReservationsCommand(gym, this);
+            LoadReservationCommand = new LoadReservationsCommand(gymStore, this);
         }
 
-        public static ReservationListingViewModel LoadViewModel(Gym gym, NavigationService makeReservationNavigationService)
+        public static ReservationListingViewModel LoadViewModel(GymStore gymStore, NavigationService makeReservationNavigationService)
         {
-            ReservationListingViewModel viewModel = new ReservationListingViewModel(gym, makeReservationNavigationService);
+            ReservationListingViewModel viewModel = new ReservationListingViewModel(gymStore, makeReservationNavigationService);
 
             viewModel.LoadReservationCommand.Execute(null);
 

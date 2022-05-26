@@ -60,9 +60,9 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public MakeReservationViewModel(Gym Gym, NavigationService ReservationNavigationService) 
+        public MakeReservationViewModel(GymStore GymStore, NavigationService ReservationNavigationService) 
         {
-            SubmitCommand = new MakeReservationCommand(this, Gym, ReservationNavigationService);
+            SubmitCommand = new MakeReservationCommand(this, GymStore, ReservationNavigationService);
             CancelCommand = new NavigateCommand(ReservationNavigationService);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
 using SilowniaProjektWPF.Services;
+using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,13 @@ namespace SilowniaProjektWPF.Commands
     public class MakeReservationCommand : AsyncCommandBase
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;
-        private readonly Gym _gym;
+        private readonly GymStore _gymStore;
         private readonly NavigationService _reservationNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, Gym Gym, NavigationService ReservationNavigationService)
+        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, GymStore GymStore, NavigationService ReservationNavigationService)
         {
             _makeReservationViewModel = MakeReservationViewModel;
-            _gym = Gym;
+            _gymStore = GymStore;
             _reservationNavigationService = ReservationNavigationService;
 
             _makeReservationViewModel.PropertyChanged += OnViewModelPropertyChanged;
@@ -43,7 +44,7 @@ namespace SilowniaProjektWPF.Commands
 
             try
             {
-                await _gym.MakeReservation(reservation);
+                await _gymStore.MakeReservation(reservation);
                 MessageBox.Show("Successfuly reserved.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(ReservationConflictException)

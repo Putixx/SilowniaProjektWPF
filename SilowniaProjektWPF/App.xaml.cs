@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using SilowniaProjektWPF.DAL.Contexts;
 using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Services;
@@ -24,11 +25,13 @@ namespace SilowniaProjektWPF
     {
         private const string CONNECTION_STRING = "Data Source=gym.db";
         private readonly Gym _gym;
+        private readonly GymStore _gymStore;
         private readonly NavigationStore _navigationStore;
         private readonly GymDbContextFactory _gymDbContextFactory;
 
         public App()
         {
+
             _gymDbContextFactory = new GymDbContextFactory(CONNECTION_STRING);
             IReservationProvider reservationProvider = new ReservationProvider(_gymDbContextFactory);
             IReservationCreator reservationCreator = new ReservationCreator(_gymDbContextFactory);
@@ -36,6 +39,7 @@ namespace SilowniaProjektWPF
 
             ReservationBook reservationBook = new ReservationBook(reservationProvider, reservationCreator, reservationConflictValidator);
             _gym = new Gym("Strong Gym", reservationBook);
+            _gymStore = new GymStore(_gym);
             _navigationStore = new NavigationStore();
         }
 
@@ -59,12 +63,12 @@ namespace SilowniaProjektWPF
 
         private MakeReservationViewModel CreateMakeReservationViewModel()
         {
-            return new MakeReservationViewModel(_gym, new NavigationService(_navigationStore, CreateReservationViewModel));
+            return new MakeReservationViewModel(_gymStore, new NavigationService(_navigationStore, CreateReservationViewModel));
         }
 
         private ReservationListingViewModel CreateReservationViewModel()
         {
-            return ReservationListingViewModel.LoadViewModel(_gym, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
+            return ReservationListingViewModel.LoadViewModel(_gymStore, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
         }
     }
 }

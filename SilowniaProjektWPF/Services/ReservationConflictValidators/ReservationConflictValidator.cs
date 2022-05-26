@@ -25,8 +25,8 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
             {
                 ReservationDTO reservationDTO = await context.Reservations.Where(r => r.PassNumber == reservation.PassNumber)
                     .Where(r => r.InstructorIndex == reservation.InstructorIndex)
-                    .Where(r => r.StartDate < reservation.EndDate)
-                    .Where(r => r.EndDate > reservation.StartDate)
+                    .Where(r => r.StartDate <= reservation.EndDate)
+                    .Where(r => r.EndDate >= reservation.StartDate)
                     .FirstOrDefaultAsync();
 
                 if (reservationDTO == null) return null;

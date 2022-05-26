@@ -1,4 +1,5 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
+using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ namespace SilowniaProjektWPF.Commands
 {
     public class LoadReservationsCommand : AsyncCommandBase
     {
-        private readonly Gym _gym;
+        private readonly GymStore _gymStore;
         private readonly ReservationListingViewModel _viewModel;
 
-        public LoadReservationsCommand(Gym gym, ReservationListingViewModel viewModel)
+        public LoadReservationsCommand(GymStore gymStore, ReservationListingViewModel viewModel)
         {
-            _gym = gym;
+            _gymStore = gymStore;
             _viewModel = viewModel;
         }
 
@@ -24,9 +25,9 @@ namespace SilowniaProjektWPF.Commands
         {
             try
             {
-                IEnumerable<Reservation> reservations = await _gym.GetAllReservations();
+                await _gymStore.Load();
 
-                _viewModel.UpdateReservations(reservations);
+                _viewModel.UpdateReservations(_gymStore.Reservations);
             }
             catch (Exception)
             {
