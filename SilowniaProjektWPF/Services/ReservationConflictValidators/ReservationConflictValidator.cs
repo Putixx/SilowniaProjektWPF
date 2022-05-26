@@ -23,8 +23,7 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
             {
-                ReservationDTO reservationDTO = await context.Reservations.Where(r => r.PassNumber == reservation.PassNumber)
-                    .Where(r => r.InstructorIndex == reservation.InstructorIndex)
+                ReservationDTO reservationDTO = await context.Reservations.Where(r => r.InstructorIndex == reservation.InstructorIndex)
                     .Where(r => r.StartDate <= reservation.EndDate)
                     .Where(r => r.EndDate >= reservation.StartDate)
                     .FirstOrDefaultAsync();

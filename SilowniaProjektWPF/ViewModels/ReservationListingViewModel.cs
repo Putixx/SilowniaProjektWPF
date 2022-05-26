@@ -22,16 +22,16 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand NewReservationCommand { get; }
         public ICommand LoadReservationCommand { get; }
 
-        public ReservationListingViewModel(GymStore gymStore, NavigationService ReservationNavigationService)
+        public ReservationListingViewModel(GymStore gymStore, NavigationService<MakeReservationViewModel> ReservationNavigationService)
         {
             _gymStore = gymStore;
             _reservations = new ObservableCollection<ReservationViewModel>();
 
-            NewReservationCommand = new NavigateCommand(ReservationNavigationService);
+            NewReservationCommand = new NavigateCommand<MakeReservationViewModel>(ReservationNavigationService);
             LoadReservationCommand = new LoadReservationsCommand(gymStore, this);
         }
 
-        public static ReservationListingViewModel LoadViewModel(GymStore gymStore, NavigationService makeReservationNavigationService)
+        public static ReservationListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeReservationViewModel> makeReservationNavigationService)
         {
             ReservationListingViewModel viewModel = new ReservationListingViewModel(gymStore, makeReservationNavigationService);
 

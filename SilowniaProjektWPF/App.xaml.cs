@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SilowniaProjektWPF.DAL.Contexts;
 using SilowniaProjektWPF.DAL.Models;
@@ -23,52 +25,71 @@ namespace SilowniaProjektWPF
     /// </summary>
     public partial class App : Application
     {
-        private const string CONNECTION_STRING = "Data Source=gym.db";
-        private readonly Gym _gym;
-        private readonly GymStore _gymStore;
-        private readonly NavigationStore _navigationStore;
-        private readonly GymDbContextFactory _gymDbContextFactory;
+        private readonly IHost _host;
 
         public App()
         {
+            _host = Host.CreateDefaultBuilder()
+                .ConfigureServices((hostContext, services) =>
+            {
+                services.AddSingleton(new GymDbContextFactory(hostContext.Configuration.GetConnectionString("Default")));
+                services.AddSingleton<IReservationProvider, ReservationProvider>();
+                services.AddSingleton<IReservationCreator, ReservationCreator>();
+                services.AddSingleton<IReservationConflictValidator, ReservationConflictValidator>();
 
-            _gymDbContextFactory = new GymDbContextFactory(CONNECTION_STRING);
-            IReservationProvider reservationProvider = new ReservationProvider(_gymDbContextFactory);
-            IReservationCreator reservationCreator = new ReservationCreator(_gymDbContextFactory);
-            IReservationConflictValidator reservationConflictValidator = new ReservationConflictValidator(_gymDbContextFactory);
+                services.AddSingleton<ReservationBook>();
+                services.AddSingleton(s => new Gym("Strong Gym", s.GetRequiredService<ReservationBook>()));
 
-            ReservationBook reservationBook = new ReservationBook(reservationProvider, reservationCreator, reservationConflictValidator);
-            _gym = new Gym("Strong Gym", reservationBook);
-            _gymStore = new GymStore(_gym);
-            _navigationStore = new NavigationStore();
+                services.AddTransient(s => CreateReservationListingViewModel(s));
+                services.AddSingleton<Func<ReservationListingViewModel>>(s => () => s.GetRequiredService<ReservationListingViewModel>());
+                services.AddSingleton<NavigationService<ReservationListingViewModel>>();
+
+                services.AddTransient<MakeReservationViewModel>();
+                services.AddSingleton<Func<MakeReservationViewModel>>(s => () => s.GetRequiredService<MakeReservationViewModel>());
+                services.AddSingleton<NavigationService<MakeReservationViewModel>>();
+
+                services.AddSingleton<GymStore>();
+                services.AddSingleton<NavigationStore>();
+
+                services.AddSingleton<MainViewModel>();
+                services.AddSingleton(s => new MainWindow()
+                {
+                    DataContext = s.GetRequiredService<MainViewModel>()
+                });
+            })
+                .Build();
+        }
+
+        private ReservationListingViewModel CreateReservationListingViewModel(IServiceProvider s)
+        {
+            return ReservationListingViewModel.LoadViewModel(
+                s.GetRequiredService<GymStore>(),
+                s.GetRequiredService<NavigationService<MakeReservationViewModel>>()
+                );
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            using (GymDbContext dbContext = _gymDbContextFactory.CreateDbContext())
+            _host.Start();
+
+            using (GymDbContext dbContext = _host.Services.GetRequiredService<GymDbContextFactory>().CreateDbContext())
             {
                 dbContext.Database.Migrate();
             }
 
-            _navigationStore.CurrentViewModel = CreateReservationViewModel();
+            _host.Services.GetRequiredService<NavigationService<ReservationListingViewModel>>().Navigate();
 
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainViewModel(_navigationStore)
-            };
+            MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
 
             base.OnStartup(e);
         }
 
-        private MakeReservationViewModel CreateMakeReservationViewModel()
+        protected override void OnExit(ExitEventArgs e)
         {
-            return new MakeReservationViewModel(_gymStore, new NavigationService(_navigationStore, CreateReservationViewModel));
-        }
+            _host.Dispose();
 
-        private ReservationListingViewModel CreateReservationViewModel()
-        {
-            return ReservationListingViewModel.LoadViewModel(_gymStore, new NavigationService(_navigationStore, CreateMakeReservationViewModel));
+            base.OnExit(e);
         }
     }
 }

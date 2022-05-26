@@ -17,9 +17,9 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;
         private readonly GymStore _gymStore;
-        private readonly NavigationService _reservationNavigationService;
+        private readonly NavigationService<ReservationListingViewModel> _reservationNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, GymStore GymStore, NavigationService ReservationNavigationService)
+        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, GymStore GymStore, NavigationService<ReservationListingViewModel> ReservationNavigationService)
         {
             _makeReservationViewModel = MakeReservationViewModel;
             _gymStore = GymStore;

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Services
 {
-    public class NavigationService
+    public class NavigationService<TViewModel> where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
-        private readonly Func<ViewModelBase> _createViewModel;
+        private readonly Func<TViewModel> _createViewModel;
 
-        public NavigationService(NavigationStore NavigationStore, Func<ViewModelBase> CreateViewModel)
+        public NavigationService(NavigationStore NavigationStore, Func<TViewModel> CreateViewModel)
         {
             _navigationStore = NavigationStore;
             _createViewModel = CreateViewModel;
