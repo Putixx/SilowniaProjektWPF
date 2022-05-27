@@ -8,7 +8,7 @@
         xmlns:vms="clr-namespace:SilowniaProjektWPF.ViewModels"
         mc:Ignorable="d"
         FontSize="14"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid Margin="20 10" MaxWidth="600">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
@@ -28,9 +28,6 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:WorkerListingViewModel}">
                 <views:WorkerListingView />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:LoggedWorkerViewModel}">
-                <views:LoggedAdminView />
             </DataTemplate>
         </Grid.Resources>
 

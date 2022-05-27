@@ -12,6 +12,17 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class MakeWorkerViewModel : ViewModelBase
     {
+        private string _instructorIndex;
+        public string InstructorIndex
+        {
+            get => _instructorIndex;
+            set
+            {
+                _instructorIndex = value;
+                OnPropertyChanged(nameof(InstructorIndex));
+            }
+        }
+
         private string _name;
         public string Name
         {
@@ -42,6 +53,28 @@ namespace SilowniaProjektWPF.ViewModels
             {
                 _phoneNumber = value;
                 OnPropertyChanged(nameof(PhoneNumber));
+            }
+        }
+
+        private string _specialization;
+        public string Specialization
+        {
+            get => _specialization;
+            set
+            {
+                _specialization = value;
+                OnPropertyChanged(nameof(Specialization));
+            }
+        }
+
+        private string _hourlyCost;
+        public string HourlyCost
+        {
+            get => _hourlyCost;
+            set
+            {
+                _hourlyCost = value;
+                OnPropertyChanged(nameof(HourlyCost));
             }
         }
 

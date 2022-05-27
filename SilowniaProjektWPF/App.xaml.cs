@@ -58,10 +58,6 @@ namespace SilowniaProjektWPF
                 services.AddSingleton<Func<MakeWorkerViewModel>>(s => () => s.GetRequiredService<MakeWorkerViewModel>());
                 services.AddSingleton<NavigationService<MakeWorkerViewModel>>();
 
-                services.AddTransient<LoggedWorkerViewModel>();
-                services.AddSingleton<Func<LoggedWorkerViewModel>>(s => () => s.GetRequiredService<LoggedWorkerViewModel>());
-                services.AddSingleton<NavigationService<LoggedWorkerViewModel>>();
-
                 services.AddTransient(s => CreateReservationListingViewModel(s));
                 services.AddSingleton<Func<ReservationListingViewModel>>(s => () => s.GetRequiredService<ReservationListingViewModel>());
                 services.AddSingleton<NavigationService<ReservationListingViewModel>>();

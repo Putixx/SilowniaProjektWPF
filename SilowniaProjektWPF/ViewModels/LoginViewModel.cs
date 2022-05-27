@@ -12,13 +12,11 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        public ICommand LoginAdminCommand { get; }
-        public ICommand LoginWorkerCommand { get; }
+        public ICommand StartCommand { get; }
 
-        public LoginViewModel(NavigationService<LoggedWorkerViewModel> LoggedWorkerNavigationService, NavigationService<LoggedAdminViewModel> LoggedAdminNavigationService)
+        public LoginViewModel(NavigationService<LoggedAdminViewModel> LoggedAdminNavigationService)
         {
-            LoginAdminCommand = new NavigateCommand<LoggedAdminViewModel>(LoggedAdminNavigationService);
-            LoginWorkerCommand = new NavigateCommand<LoggedWorkerViewModel>(LoggedWorkerNavigationService);
+            StartCommand = new NavigateCommand<LoggedAdminViewModel>(LoggedAdminNavigationService);
         }
     }
 }

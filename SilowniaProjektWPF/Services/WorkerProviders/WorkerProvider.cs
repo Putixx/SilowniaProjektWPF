@@ -32,7 +32,7 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
 
         private static Worker ToWorker(WorkerDTO w)
         {
-            return new Worker(w.Name, w.Surname, w.PhoneNumber);
+            return new Worker(w.InstructorIndex, w.Name, w.Surname, w.PhoneNumber, w.Specialization, w.HourlyCost);
         }
 
         public async Task CreateWorker(Worker worker)
@@ -63,9 +63,12 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
         {
             return new WorkerDTO()
             {
+                InstructorIndex = worker.InstructorIndex,
                 Name = worker.Name,
                 Surname = worker.Surname,
-                PhoneNumber = worker.PhoneNumber
+                PhoneNumber = worker.PhoneNumber,
+                Specialization = worker.Specialization,
+                HourlyCost = worker.HourlyCost.ToString()
             };
         }
 
@@ -73,9 +76,12 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
             {
-                WorkerDTO workerDTO = await context.Workers.Where(w => w.Name == worker.Name)
+                WorkerDTO workerDTO = await context.Workers.Where(w => w.InstructorIndex == worker.InstructorIndex)
+                    .Where(w => w.Name == worker.Name)
                     .Where(w => w.Surname == worker.Surname)
                     .Where(w => w.PhoneNumber == worker.PhoneNumber)
+                    .Where(w => w.Specialization == worker.Specialization)
+                    .Where(w => w.HourlyCost == worker.HourlyCost.ToString())
                     .FirstOrDefaultAsync();
 
                 if (workerDTO == null) return null;

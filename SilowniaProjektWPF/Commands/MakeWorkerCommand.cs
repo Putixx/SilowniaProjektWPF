@@ -36,9 +36,12 @@ namespace SilowniaProjektWPF.Commands
         public override async Task ExecuteAsync(object parameter)
         {
             Worker worker = new Worker(
+                _makeWorkerViewModel.InstructorIndex,
                 _makeWorkerViewModel.Name,
                 _makeWorkerViewModel.Surname,
-                _makeWorkerViewModel.PhoneNumber
+                _makeWorkerViewModel.PhoneNumber,
+                _makeWorkerViewModel.Specialization,
+                _makeWorkerViewModel.HourlyCost
                 );
 
             try
