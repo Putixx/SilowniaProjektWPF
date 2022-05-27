@@ -2,6 +2,7 @@
 using SilowniaProjektWPF.DAL.Contexts;
 using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.DAL.ModelsDTO;
+using SilowniaProjektWPF.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,19 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
 
         public async Task CreateWorker(Worker worker)
         {
+            Worker conflictingWorker = await CheckIfExists(worker);
+            Worker conflictingNumber = await CheckIfSameNumber(worker);
+
+            if (conflictingWorker != null)
+            {
+                throw new WorkerConflictException(conflictingWorker, worker);
+            }
+
+            if (conflictingNumber != null)
+            {
+                throw new WorkerExistingNumberException(conflictingNumber, worker);
+            }
+
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
             {
                 WorkerDTO workerDTO = ToWorkerDTO(worker);
@@ -53,6 +67,33 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
                 Surname = worker.Surname,
                 PhoneNumber = worker.PhoneNumber
             };
+        }
+
+        private async Task<Worker> CheckIfExists(Worker worker)
+        {
+            using (GymDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                WorkerDTO workerDTO = await context.Workers.Where(w => w.Name == worker.Name)
+                    .Where(w => w.Surname == worker.Surname)
+                    .Where(w => w.PhoneNumber == worker.PhoneNumber)
+                    .FirstOrDefaultAsync();
+
+                if (workerDTO == null) return null;
+
+                return ToWorker(workerDTO);
+            }
+        }
+
+        private async Task<Worker> CheckIfSameNumber(Worker worker)
+        {
+            using (GymDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                WorkerDTO workerDTO = await context.Workers.Where(w => w.PhoneNumber == worker.PhoneNumber).FirstOrDefaultAsync();
+
+                if (workerDTO == null) return null;
+
+                return ToWorker(workerDTO);
+            }
         }
     }
 }

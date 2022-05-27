@@ -1,4 +1,5 @@
-﻿using SilowniaProjektWPF.Services.WorkerProviders;
+﻿using SilowniaProjektWPF.Exceptions;
+using SilowniaProjektWPF.Services.WorkerProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;

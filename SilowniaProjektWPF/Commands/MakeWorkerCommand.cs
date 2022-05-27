@@ -1,4 +1,5 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
+using SilowniaProjektWPF.Exceptions;
 using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
@@ -44,6 +45,14 @@ namespace SilowniaProjektWPF.Commands
             {
                 await _gymStore.MakeWorker(worker);
                 MessageBox.Show("Successfuly added new worker.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (WorkerConflictException)
+            {
+                MessageBox.Show("This worker already exists.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (WorkerExistingNumberException)
+            {
+                MessageBox.Show("Number already registered for existing worker.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception)
             {
