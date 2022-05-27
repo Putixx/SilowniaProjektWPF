@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using SilowniaProjektWPF.DAL.Contexts;
 using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Services;
+using SilowniaProjektWPF.Services.EquipmentProviders;
 using SilowniaProjektWPF.Services.ReservationConflictValidators;
 using SilowniaProjektWPF.Services.ReservationCreators;
 using SilowniaProjektWPF.Services.ReservationProviders;
@@ -12,11 +13,6 @@ using SilowniaProjektWPF.Services.WorkerProviders;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SilowniaProjektWPF
@@ -38,9 +34,10 @@ namespace SilowniaProjektWPF
                 services.AddSingleton<IReservationCreator, ReservationCreator>();
                 services.AddSingleton<IReservationConflictValidator, ReservationConflictValidator>();
                 services.AddSingleton<IWorkerProvider, WorkerProvider>();
+                services.AddSingleton<IEquipmentProvider, EquipmentProvider>();
 
                 services.AddSingleton<ReservationBook>();
-                services.AddSingleton(s => new Gym("Strong Gym", s.GetRequiredService<ReservationBook>(), s.GetRequiredService<IWorkerProvider>()));
+                services.AddSingleton(s => new Gym("Strong Gym", s.GetRequiredService<ReservationBook>(), s.GetRequiredService<IWorkerProvider>(), s.GetRequiredService<IEquipmentProvider>()));
 
                 services.AddTransient<LoginViewModel>();
                 services.AddSingleton<Func<LoginViewModel>>(s => () => s.GetRequiredService<LoginViewModel>());
@@ -57,6 +54,14 @@ namespace SilowniaProjektWPF
                 services.AddTransient<MakeWorkerViewModel>();
                 services.AddSingleton<Func<MakeWorkerViewModel>>(s => () => s.GetRequiredService<MakeWorkerViewModel>());
                 services.AddSingleton<NavigationService<MakeWorkerViewModel>>();
+
+                services.AddTransient(s => CreateEquipListingViewModel(s));
+                services.AddSingleton<Func<EquipListingViewModel>>(s => () => s.GetRequiredService<EquipListingViewModel>());
+                services.AddSingleton<NavigationService<EquipListingViewModel>>();
+
+                services.AddTransient<MakeEquipmentViewModel>();
+                services.AddSingleton<Func<MakeEquipmentViewModel>>(s => () => s.GetRequiredService<MakeEquipmentViewModel>());
+                services.AddSingleton<NavigationService<MakeEquipmentViewModel>>();
 
                 services.AddTransient(s => CreateReservationListingViewModel(s));
                 services.AddSingleton<Func<ReservationListingViewModel>>(s => () => s.GetRequiredService<ReservationListingViewModel>());
@@ -76,6 +81,15 @@ namespace SilowniaProjektWPF
                 });
             })
                 .Build();
+        }
+
+        private EquipListingViewModel CreateEquipListingViewModel(IServiceProvider s)
+        {
+            return EquipListingViewModel.LoadViewModel(
+                s.GetRequiredService<GymStore>(),
+                s.GetRequiredService<NavigationService<MakeEquipmentViewModel>>(),
+                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
+                );
         }
 
         private WorkerListingViewModel CreateWorkerListingViewModel(IServiceProvider s)

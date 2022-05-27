@@ -9,10 +9,10 @@ namespace SilowniaProjektWPF.DAL.Models
         public DateTime PurchaseDate { get; }
         public DateTime WarrantyExpireDate { get; }
 
-        public Equipment(string Name, int Quantity, DateTime PurchaseDate, DateTime WarrantyExpireDate)
+        public Equipment(string Name, string Quantity, DateTime PurchaseDate, DateTime WarrantyExpireDate)
         {
             this.Name = Name;
-            this.Quantity = Quantity;
+            this.Quantity = int.TryParse(Quantity, out int result) ? result : 0;
             this.PurchaseDate = PurchaseDate;
             this.WarrantyExpireDate = WarrantyExpireDate;
         }

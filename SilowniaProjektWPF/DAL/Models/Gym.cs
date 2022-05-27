@@ -1,4 +1,5 @@
 ﻿using SilowniaProjektWPF.Exceptions;
+using SilowniaProjektWPF.Services.EquipmentProviders;
 using SilowniaProjektWPF.Services.WorkerProviders;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,15 @@ namespace SilowniaProjektWPF.DAL.Models
     {
         private readonly ReservationBook _reservationBook;
         private readonly IWorkerProvider _workersProvider;
+        private readonly IEquipmentProvider _equipmentProvider;
         public string Name { get; }
 
-        public Gym(string Name, ReservationBook reservationBook, IWorkerProvider workersProvider)
+        public Gym(string Name, ReservationBook reservationBook, IWorkerProvider workersProvider, IEquipmentProvider equipmentProvider)
         {
             this.Name = Name;
             _reservationBook = reservationBook;
             _workersProvider = workersProvider;
-        }
-
-        public void GetReservationsForInstructor(string InstructorIndex)
-        {
-            _reservationBook.GetReservationsForInstructorIndex(InstructorIndex);
+            _equipmentProvider = equipmentProvider;
         }
 
         public async Task<IEnumerable<Reservation>> GetAllReservations()
@@ -36,6 +34,11 @@ namespace SilowniaProjektWPF.DAL.Models
             return await _workersProvider.GetWorkers();
         }
 
+        public async Task<IEnumerable<Equipment>> GetAllEquipment()
+        {
+            return await _equipmentProvider.GetEquipment();
+        }
+
         public async Task MakeReservation(Reservation reservation)
         {
             await _reservationBook.AddReservation(reservation);
@@ -44,6 +47,11 @@ namespace SilowniaProjektWPF.DAL.Models
         public async Task MakeWorker(Worker worker)
         {
             await _workersProvider.CreateWorker(worker);
+        }
+
+        public async Task MakeEquipment(Equipment equipment)
+        {
+            await _equipmentProvider.CreateEquipment(equipment);
         }
     }
 }

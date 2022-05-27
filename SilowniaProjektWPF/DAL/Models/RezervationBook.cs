@@ -21,11 +21,6 @@ namespace SilowniaProjektWPF.DAL.Models
             _reservationConflictValidator = reservationConflictValidator;
         }
 
-        public void GetReservationsForInstructorIndex(string InstructorIndex)
-        {
-            
-        }
-
         public async Task<IEnumerable<Reservation>> GetReservations()
         {
             return await _reservationProvider.GetAllReservations();

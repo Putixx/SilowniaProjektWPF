@@ -14,5 +14,6 @@ namespace SilowniaProjektWPF.DAL.Contexts
 
         public DbSet<ReservationDTO> Reservations { get; set; }
         public DbSet<WorkerDTO> Workers { get; set; }
+        public DbSet<EquipmentDTO> Equipment { get; set; }
     }
 }

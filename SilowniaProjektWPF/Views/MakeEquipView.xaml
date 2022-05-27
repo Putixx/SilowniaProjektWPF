@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SilowniaProjektWPF.Views.MakeReservationView"
+﻿<UserControl x:Class="SilowniaProjektWPF.Views.MakeEquipView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,7 +19,7 @@
             Grid.Row="0" 
             Style="{StaticResource Header}"
             Margin="25 0 0 0"
-            Text="Make Reservation" />
+            Text="Add Equipment" />
 
         <Grid Grid.Row="1" Margin="0 25 0 0">
             <Grid.RowDefinitions>
@@ -30,11 +30,11 @@
             <TextBlock 
                 Grid.Row="0" 
                 Margin="10 0 0 0"
-                Text="Pass Number" />
+                Text="Name" />
             <TextBox 
                 Grid.Row="1" 
                 Margin="10 5 0 0"
-                Text="{Binding PassNumber, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="2" Margin="0 10 0 0">
@@ -46,11 +46,11 @@
             <TextBlock 
                 Grid.Row="0" 
                 Margin="10 0 0 0"
-                Text="Instructor Index" />
+                Text="Quantity" />
             <TextBox 
                 Grid.Row="1" 
                 Margin="10 5 0 0"
-                Text="{Binding InstructorIndex, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="3" Margin="0 10 0 0">
@@ -68,23 +68,23 @@
                 Grid.Row="0" 
                 Grid.Column="0"
                 Margin="10 0 0 0"
-                Text="Start Date" />
+                Text="Purchase Date" />
             <DatePicker 
                 Grid.Row="1" 
                 Grid.Column="0"
                 Margin="10 5 0 0"
-                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
+                SelectedDate="{Binding PurchaseDate, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock 
                 Grid.Row="0" 
                 Grid.Column="1"
                 Margin="10 0 0 0"
-                Text="End Date" />
+                Text="Warranty Expire Date" />
             <DatePicker 
                 Grid.Row="1" 
                 Grid.Column="1"
                 Margin="10 5 0 0"
-                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" />
+                SelectedDate="{Binding WarrantyExpireDate, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <StackPanel 
@@ -96,7 +96,7 @@
                 Margin="10 0 0 0"
                 Command="{Binding SubmitCommand}"/>
             <Button 
-                Content="Back To Reservation List"
+                Content="Back To equipment List"
                 Margin="10 0 0 0"
                 Command="{Binding CancelCommand}"/>
         </StackPanel>

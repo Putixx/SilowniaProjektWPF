@@ -1,8 +1,6 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Stores
@@ -11,17 +9,20 @@ namespace SilowniaProjektWPF.Stores
     {
         private readonly List<Reservation> _reservations;
         private readonly List<Worker> _workers;
+        private readonly List<Equipment> _equipment;
         private readonly Gym _gym;
         private readonly Lazy<Task> _initializeLazy;
 
         public IEnumerable<Reservation> Reservations => _reservations;
         public IEnumerable<Worker> Workers => _workers;
+        public IEnumerable<Equipment> Equipment => _equipment;
 
 
         public GymStore(Gym gym)
         {
             _reservations = new List<Reservation>();
             _workers = new List<Worker>();
+            _equipment = new List<Equipment>();
             _initializeLazy = new Lazy<Task>(Initialize);
             _gym = gym;
         }
@@ -45,16 +46,27 @@ namespace SilowniaProjektWPF.Stores
             _workers.Add(worker);
         }
 
+        public async Task MakeEquipment(Equipment equipment)
+        {
+            await _gym.MakeEquipment(equipment);
+
+            _equipment.Add(equipment);
+        }
+
         private async Task Initialize()
         {
             IEnumerable<Reservation> reservations = await _gym.GetAllReservations();
             IEnumerable<Worker> workers = await _gym.GetAllWorkers();
+            IEnumerable<Equipment> equipment = await _gym.GetAllEquipment();
 
             _reservations.Clear();
             _reservations.AddRange(reservations);
 
             _workers.Clear();
             _workers.AddRange(workers);
+
+            _equipment.Clear();
+            _equipment.AddRange(equipment);
         }
     }
 }
