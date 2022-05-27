@@ -13,5 +13,6 @@ namespace SilowniaProjektWPF.DAL.Contexts
         public GymDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<ReservationDTO> Reservations { get; set; }
+        public DbSet<WorkerDTO> Workers { get; set; }
     }
 }

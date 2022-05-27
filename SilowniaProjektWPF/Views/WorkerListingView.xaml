@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SilowniaProjektWPF.Views.ReservationListingView"
+﻿<UserControl x:Class="SilowniaProjektWPF.Views.WorkerListingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -28,13 +28,13 @@
                 Grid.Column="1" 
                 Content="Make new reservation"
                 Margin="25 0 0 0" 
-                Command="{Binding NewReservationCommand}" />
+                Command="{Binding NewWorkerCommand}" />
         </Grid>
 
         <ListView 
             Grid.Row="1" 
             Margin="0 25 0 0"
-            ItemsSource="{Binding Reservations}">
+            ItemsSource="{Binding Workers}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -42,38 +42,29 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Pass Number">
+                    <GridViewColumn Header="Name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding PassNumber}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Instructor Index">
+                    <GridViewColumn Header="Surname">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding InstructorIndex}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Surname}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Start Date">
+                    <GridViewColumn Header="Phone Number">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding StartDate}"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding PhoneNumber}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-
-                    <GridViewColumn Header="End Date">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding EndDate}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
                 </GridView>
             </ListView.View>
         </ListView>

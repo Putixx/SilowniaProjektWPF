@@ -17,6 +17,21 @@
             <DataTemplate DataType="{x:Type vms:ReservationListingViewModel}">
                 <views:ReservationListingView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LoggedAdminViewModel}">
+                <views:LoggedAdminView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MakeWorkerViewModel}">
+                <views:MakeWorkerView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:WorkerListingViewModel}">
+                <views:WorkerListingView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LoggedWorkerViewModel}">
+                <views:LoggedAdminView />
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}" />
