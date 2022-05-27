@@ -1,12 +1,5 @@
-﻿using SilowniaProjektWPF.DAL.Models;
-using SilowniaProjektWPF.Services;
-using SilowniaProjektWPF.Stores;
+﻿using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Commands
 {

@@ -1,10 +1,4 @@
-﻿using SilowniaProjektWPF.DAL.Models;
-using SilowniaProjektWPF.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SilowniaProjektWPF.Stores;
 
 namespace SilowniaProjektWPF.ViewModels
 {

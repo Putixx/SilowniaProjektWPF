@@ -1,12 +1,8 @@
-﻿using SilowniaProjektWPF.Exceptions;
-using SilowniaProjektWPF.Services.ClientProviders;
+﻿using SilowniaProjektWPF.Services.ClientProviders;
 using SilowniaProjektWPF.Services.EquipmentProviders;
 using SilowniaProjektWPF.Services.PassProviders;
 using SilowniaProjektWPF.Services.WorkerProviders;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.DAL.Models

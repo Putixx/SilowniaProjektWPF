@@ -3,7 +3,6 @@ using SilowniaProjektWPF.Services.ReservationConflictValidators;
 using SilowniaProjektWPF.Services.ReservationCreators;
 using SilowniaProjektWPF.Services.ReservationProviders;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.DAL.Models

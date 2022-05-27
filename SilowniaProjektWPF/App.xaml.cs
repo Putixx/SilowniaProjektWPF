@@ -19,6 +19,10 @@ using System.Windows;
 
 namespace SilowniaProjektWPF
 {
+    // Publish
+    // dotnet publish -c Release --self-contained=true -p:PublishSingleFile=true
+
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

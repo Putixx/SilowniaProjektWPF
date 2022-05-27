@@ -2,10 +2,6 @@
 using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
