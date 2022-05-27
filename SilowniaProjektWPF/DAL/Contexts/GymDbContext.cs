@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SilowniaProjektWPF.DAL.ModelsDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.DAL.Contexts
 {
@@ -15,5 +10,7 @@ namespace SilowniaProjektWPF.DAL.Contexts
         public DbSet<ReservationDTO> Reservations { get; set; }
         public DbSet<WorkerDTO> Workers { get; set; }
         public DbSet<EquipmentDTO> Equipment { get; set; }
+        public DbSet<ClientDTO> Clients { get; set; }
+        public DbSet<PassDTO> Passes { get; set; }
     }
 }

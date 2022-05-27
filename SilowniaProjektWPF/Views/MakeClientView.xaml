@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="SilowniaProjektWPF.Views.MakeClientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SilowniaProjektWPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock 
+            Grid.Row="0" 
+            Style="{StaticResource Header}"
+            Margin="25 0 0 0"
+            Text="Add Client" />
+
+        <Grid Grid.Row="1" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Margin="10 0 0 0"
+                Text="Name" />
+            <TextBox 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Margin="10 5 0 0"
+                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Margin="10 0 0 0"
+                Text="Surname" />
+            <TextBox 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Margin="10 5 0 0"
+                Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Margin="10 0 0 0"
+                Text="Phone Number" />
+            <TextBox 
+                Grid.Row="1" 
+                Margin="10 5 0 0"
+                Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Width="200"
+                Margin="10 0 0 0"
+                Text="Pass Number" />
+            <TextBox 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Margin="10 5 0 0"
+                Text="{Binding PassNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Margin="10 0 0 0"
+                Text="Pass Type" />
+            <TextBox 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Margin="10 5 0 0"
+                Text="{Binding PassType, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="0 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0"
+                Margin="10 0 0 0"
+                Text="Purchase Date" />
+            <DatePicker 
+                Grid.Row="1" 
+                Grid.Column="0"
+                Margin="10 5 0 0"
+                SelectedDate="{Binding PurchaseDate, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="1"
+                Margin="10 0 0 0"
+                Text="Expire Date" />
+            <DatePicker 
+                Grid.Row="1" 
+                Grid.Column="1"
+                Margin="10 5 0 0"
+                SelectedDate="{Binding ExpireDate, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <StackPanel 
+            Grid.Row="5"      
+            Orientation="Horizontal" 
+            Margin="0 25 0 0">
+            <Button 
+                Content="Submit"
+                Margin="10 0 0 0"
+                Command="{Binding SubmitCommand}"/>
+            <Button 
+                Content="Back To Reservation List"
+                Margin="10 0 0 0"
+                Command="{Binding CancelCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

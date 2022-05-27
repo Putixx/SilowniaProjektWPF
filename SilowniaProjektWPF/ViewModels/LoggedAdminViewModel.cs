@@ -16,10 +16,10 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand ManageEquipCommand { get; }
         public ICommand ManageReservationsCommand { get; }
 
-        public LoggedAdminViewModel(NavigationService<WorkerListingViewModel> ManageWorkersNavigationService, /*NavigationService<ClientListingViewModel> ManageClientsNavigationService,*/ NavigationService<EquipListingViewModel> ManageEquipNavigationService, NavigationService<ReservationListingViewModel> ManageReservationsNavigationService)
+        public LoggedAdminViewModel(NavigationService<WorkerListingViewModel> ManageWorkersNavigationService, NavigationService<ClientListingViewModel> ManageClientsNavigationService, NavigationService<EquipListingViewModel> ManageEquipNavigationService, NavigationService<ReservationListingViewModel> ManageReservationsNavigationService)
         {
             ManageWorkersCommand = new NavigateCommand<WorkerListingViewModel>(ManageWorkersNavigationService);
-            //ManageClientsCommand = new NavigateCommand<ClientListingViewModel>(ManageClientsNavigationService);
+            ManageClientsCommand = new NavigateCommand<ClientListingViewModel>(ManageClientsNavigationService);
             ManageEquipCommand = new NavigateCommand<EquipListingViewModel>(ManageEquipNavigationService);
             ManageReservationsCommand = new NavigateCommand<ReservationListingViewModel>(ManageReservationsNavigationService);
         }

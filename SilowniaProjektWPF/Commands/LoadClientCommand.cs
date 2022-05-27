@@ -6,12 +6,12 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
-    public class LoadEquipmentCommand : AsyncCommandBase
+    public class LoadClientCommand : AsyncCommandBase
     {
         private readonly GymStore _gymStore;
-        private readonly EquipListingViewModel _viewModel;
+        private readonly ClientListingViewModel _viewModel;
 
-        public LoadEquipmentCommand(GymStore gymStore, EquipListingViewModel viewModel)
+        public LoadClientCommand(GymStore gymStore, ClientListingViewModel viewModel)
         {
             _gymStore = gymStore;
             _viewModel = viewModel;
@@ -23,7 +23,7 @@ namespace SilowniaProjektWPF.Commands
             {
                 await _gymStore.Load();
 
-                _viewModel.UpdateEquipment(_gymStore.Equipment);
+                _viewModel.UpdateClients(_gymStore.Clients);
             }
             catch (Exception)
             {

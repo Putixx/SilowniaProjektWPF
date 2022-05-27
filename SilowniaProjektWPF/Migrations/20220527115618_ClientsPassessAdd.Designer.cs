@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SilowniaProjektWPF.DAL.Contexts;
 
 namespace SilowniaProjektWPF.Migrations
 {
     [DbContext(typeof(GymDbContext))]
-    partial class GymDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220527115618_ClientsPassessAdd")]
+    partial class ClientsPassessAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,16 +70,16 @@ namespace SilowniaProjektWPF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ExpireDate")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PassNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PassType")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("PurchaseDate")
+                    b.Property<string>("Surname")
                         .HasColumnType("TEXT");
 
                     b.HasKey("PassID");
