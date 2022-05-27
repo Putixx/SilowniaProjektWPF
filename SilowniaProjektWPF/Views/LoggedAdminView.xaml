@@ -37,13 +37,13 @@
                 Margin="0 25 0 0"
                 Command="{Binding ManageClientsCommand}"/>
             <Button 
-                Content="Manage Equipment"
+                Content="Manage equipment"
                 FontSize="18"
                 Width="250"
                 Margin="0 25 0 0"
                 Command="{Binding ManageEquipCommand}"/>
             <Button 
-                Content="Manage Reservations"
+                Content="Manage reservations"
                 FontSize="18"
                 Width="250"
                 Margin="0 25 0 0"

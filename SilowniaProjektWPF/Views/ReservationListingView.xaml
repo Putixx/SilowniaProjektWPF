@@ -16,6 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock 
@@ -26,9 +27,15 @@
 
             <Button 
                 Grid.Column="1" 
-                Content="Make new reservation"
+                Content="Make reservation"
                 Margin="25 0 0 0" 
                 Command="{Binding NewReservationCommand}" />
+
+            <Button 
+                Grid.Column="2" 
+                Content="Back to menu"
+                Margin="25 0 0 0" 
+                Command="{Binding MenuCommand}" />
         </Grid>
 
         <ListView 

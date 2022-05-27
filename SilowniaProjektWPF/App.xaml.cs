@@ -86,7 +86,8 @@ namespace SilowniaProjektWPF
         {
             return WorkerListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
-                s.GetRequiredService<NavigationService<MakeWorkerViewModel>>()
+                s.GetRequiredService<NavigationService<MakeWorkerViewModel>>(),
+                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
                 );
         }
 
@@ -94,7 +95,8 @@ namespace SilowniaProjektWPF
         {
             return ReservationListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
-                s.GetRequiredService<NavigationService<MakeReservationViewModel>>()
+                s.GetRequiredService<NavigationService<MakeReservationViewModel>>(),
+                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
                 );
         }
 

@@ -16,19 +16,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock 
             Grid.Column="0" 
             Style="{StaticResource Header}"
             Margin="25 0 0 0"
-            Text="Show reservations list" />
+            Text="Show workers list" />
 
             <Button 
                 Grid.Column="1" 
-                Content="Make new reservation"
+                Content="Add worker"
                 Margin="25 0 0 0" 
                 Command="{Binding NewWorkerCommand}" />
+
+            <Button 
+                Grid.Column="2" 
+                Content="Back to menu"
+                Margin="25 0 0 0" 
+                Command="{Binding MenuCommand}" />
         </Grid>
 
         <ListView 

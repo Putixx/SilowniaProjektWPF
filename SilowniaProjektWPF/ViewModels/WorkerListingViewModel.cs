@@ -14,26 +14,26 @@ namespace SilowniaProjektWPF.ViewModels
 {
     public class WorkerListingViewModel : ViewModelBase
     {
-        private readonly GymStore _gymStore;
         private readonly ObservableCollection<WorkerViewModel> _workers;
 
         public IEnumerable<WorkerViewModel> Workers => _workers;
 
         public ICommand NewWorkerCommand { get; }
         public ICommand LoadWorkerCommand { get; }
+        public ICommand MenuCommand { get; }
 
-        public WorkerListingViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> WorkerNavigationService)
+        public WorkerListingViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> WorkerNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
         {
-            _gymStore = gymStore;
             _workers = new ObservableCollection<WorkerViewModel>();
 
             NewWorkerCommand = new NavigateCommand<MakeWorkerViewModel>(WorkerNavigationService);
             LoadWorkerCommand = new LoadWorkersCommand(gymStore, this);
+            MenuCommand = new NavigateCommand<LoggedAdminViewModel>(MenuNavigationService);
         }
 
-        public static WorkerListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> makeWorkerNavigationService)
+        public static WorkerListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> makeWorkerNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
         {
-            WorkerListingViewModel viewModel = new WorkerListingViewModel(gymStore, makeWorkerNavigationService);
+            WorkerListingViewModel viewModel = new WorkerListingViewModel(gymStore, makeWorkerNavigationService, MenuNavigationService);
 
             viewModel.LoadWorkerCommand.Execute(null);
 
