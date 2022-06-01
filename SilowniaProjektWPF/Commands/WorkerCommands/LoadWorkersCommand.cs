@@ -19,6 +19,8 @@ namespace SilowniaProjektWPF.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
+            _viewModel.IsLoading = true;
+
             try
             {
                 await _gymStore.Load();
@@ -29,6 +31,8 @@ namespace SilowniaProjektWPF.Commands
             {
                 MessageBox.Show("Failed to load workers.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            _viewModel.IsLoading = false;
         }
     }
 }

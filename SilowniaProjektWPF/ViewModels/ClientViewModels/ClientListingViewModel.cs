@@ -14,6 +14,17 @@ namespace SilowniaProjektWPF.ViewModels
 
         public IEnumerable<ClientViewModel> Clients => _clients;
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
         public ICommand NewClientCommand { get; }
         public ICommand LoadClientCommand { get; }
         public ICommand MenuCommand { get; }

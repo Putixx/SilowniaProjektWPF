@@ -14,6 +14,17 @@ namespace SilowniaProjektWPF.ViewModels
 
         public IEnumerable<EquipmentViewModel> Equipment => _equipment;
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
         public ICommand NewEquipmentCommand { get; }
         public ICommand LoadEquipmentCommand { get; }
         public ICommand MenuCommand { get; }

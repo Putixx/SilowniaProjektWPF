@@ -14,6 +14,17 @@ namespace SilowniaProjektWPF.ViewModels
 
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
         public ICommand NewReservationCommand { get; }
         public ICommand LoadReservationCommand { get; }
         public ICommand MenuCommand { get; }

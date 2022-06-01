@@ -14,6 +14,17 @@ namespace SilowniaProjektWPF.ViewModels
 
         public IEnumerable<WorkerViewModel> Workers => _workers;
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
         public ICommand NewWorkerCommand { get; }
         public ICommand LoadWorkerCommand { get; }
         public ICommand MenuCommand { get; }
