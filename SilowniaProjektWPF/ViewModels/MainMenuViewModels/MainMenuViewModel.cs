@@ -10,6 +10,7 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand ManageClientsCommand { get; }
         public ICommand ManageEquipCommand { get; }
         public ICommand ManageReservationsCommand { get; }
+        public ICommand QuitCommand { get; }
 
         public MainMenuViewModel(NavigationService<WorkerListingViewModel> ManageWorkersNavigationService, NavigationService<ClientListingViewModel> ManageClientsNavigationService, NavigationService<EquipListingViewModel> ManageEquipNavigationService, NavigationService<ReservationListingViewModel> ManageReservationsNavigationService)
         {
@@ -17,6 +18,7 @@ namespace SilowniaProjektWPF.ViewModels
             ManageClientsCommand = new NavigateCommand<ClientListingViewModel>(ManageClientsNavigationService);
             ManageEquipCommand = new NavigateCommand<EquipListingViewModel>(ManageEquipNavigationService);
             ManageReservationsCommand = new NavigateCommand<ReservationListingViewModel>(ManageReservationsNavigationService);
+            QuitCommand = new QuitApplicationCommand();
         }
     }
 }

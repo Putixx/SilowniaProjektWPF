@@ -48,6 +48,12 @@
                 Width="250"
                 Margin="0 25 0 0"
                 Command="{Binding ManageReservationsCommand}"/>
+            <Button 
+                Content="Exit"
+                FontSize="18"
+                Width="250"
+                Margin="0 40 0 0"
+                Command="{Binding QuitCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
