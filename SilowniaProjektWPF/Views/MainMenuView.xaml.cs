@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SilowniaProjektWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy LoggedAdminView.xaml
+    /// Logika interakcji dla klasy MainMenuView.xaml
     /// </summary>
-    public partial class LoggedAdminView : UserControl
+    public partial class MainMenuView : UserControl
     {
-        public LoggedAdminView()
+        public MainMenuView()
         {
             InitializeComponent();
         }

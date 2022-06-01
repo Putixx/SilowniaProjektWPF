@@ -48,13 +48,13 @@ namespace SilowniaProjektWPF
                 services.AddSingleton(s => new Gym("Strong Gym", s.GetRequiredService<ReservationBook>(), s.GetRequiredService<IWorkerProvider>(), 
                     s.GetRequiredService<IEquipmentProvider>(), s.GetRequiredService<IClientProvider>(), s.GetRequiredService<IPassProvider>()));
 
-                services.AddTransient<LoginViewModel>();
-                services.AddSingleton<Func<LoginViewModel>>(s => () => s.GetRequiredService<LoginViewModel>());
-                services.AddSingleton<NavigationService<LoginViewModel>>();
+                services.AddTransient<StartAppViewModel>();
+                services.AddSingleton<Func<StartAppViewModel>>(s => () => s.GetRequiredService<StartAppViewModel>());
+                services.AddSingleton<NavigationService<StartAppViewModel>>();
 
-                services.AddTransient<LoggedAdminViewModel>();
-                services.AddSingleton<Func<LoggedAdminViewModel>>(s => () => s.GetRequiredService<LoggedAdminViewModel>());
-                services.AddSingleton<NavigationService<LoggedAdminViewModel>>();
+                services.AddTransient<MainMenuViewModel>();
+                services.AddSingleton<Func<MainMenuViewModel>>(s => () => s.GetRequiredService<MainMenuViewModel>());
+                services.AddSingleton<NavigationService<MainMenuViewModel>>();
 
                 services.AddTransient(s => CreateWorkerListingViewModel(s));
                 services.AddSingleton<Func<WorkerListingViewModel>>(s => () => s.GetRequiredService<WorkerListingViewModel>());
@@ -105,7 +105,7 @@ namespace SilowniaProjektWPF
             return ClientListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
                 s.GetRequiredService<NavigationService<MakeClientViewModel>>(),
-                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
+                s.GetRequiredService<NavigationService<MainMenuViewModel>>()
                 );
         }
 
@@ -114,7 +114,7 @@ namespace SilowniaProjektWPF
             return EquipListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
                 s.GetRequiredService<NavigationService<MakeEquipmentViewModel>>(),
-                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
+                s.GetRequiredService<NavigationService<MainMenuViewModel>>()
                 );
         }
 
@@ -123,7 +123,7 @@ namespace SilowniaProjektWPF
             return WorkerListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
                 s.GetRequiredService<NavigationService<MakeWorkerViewModel>>(),
-                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
+                s.GetRequiredService<NavigationService<MainMenuViewModel>>()
                 );
         }
 
@@ -132,7 +132,7 @@ namespace SilowniaProjektWPF
             return ReservationListingViewModel.LoadViewModel(
                 s.GetRequiredService<GymStore>(),
                 s.GetRequiredService<NavigationService<MakeReservationViewModel>>(),
-                s.GetRequiredService<NavigationService<LoggedAdminViewModel>>()
+                s.GetRequiredService<NavigationService<MainMenuViewModel>>()
                 );
         }
 
@@ -145,7 +145,7 @@ namespace SilowniaProjektWPF
                 dbContext.Database.Migrate();
             }
 
-            _host.Services.GetRequiredService<NavigationService<LoginViewModel>>().Navigate();
+            _host.Services.GetRequiredService<NavigationService<StartAppViewModel>>().Navigate();
 
             MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();

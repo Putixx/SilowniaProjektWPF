@@ -18,16 +18,16 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand LoadClientCommand { get; }
         public ICommand MenuCommand { get; }
 
-        public ClientListingViewModel(GymStore gymStore, NavigationService<MakeClientViewModel> ClientNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public ClientListingViewModel(GymStore gymStore, NavigationService<MakeClientViewModel> ClientNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             _clients = new ObservableCollection<ClientViewModel>();
 
             NewClientCommand = new NavigateCommand<MakeClientViewModel>(ClientNavigationService);
             LoadClientCommand = new LoadClientCommand(gymStore, this);
-            MenuCommand = new NavigateCommand<LoggedAdminViewModel>(MenuNavigationService);
+            MenuCommand = new NavigateCommand<MainMenuViewModel>(MenuNavigationService);
         }
 
-        public static ClientListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeClientViewModel> makeClientNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public static ClientListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeClientViewModel> makeClientNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             ClientListingViewModel viewModel = new ClientListingViewModel(gymStore, makeClientNavigationService, MenuNavigationService);
 

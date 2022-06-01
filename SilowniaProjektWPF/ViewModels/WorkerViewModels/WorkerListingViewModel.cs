@@ -18,16 +18,16 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand LoadWorkerCommand { get; }
         public ICommand MenuCommand { get; }
 
-        public WorkerListingViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> WorkerNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public WorkerListingViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> WorkerNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             _workers = new ObservableCollection<WorkerViewModel>();
 
             NewWorkerCommand = new NavigateCommand<MakeWorkerViewModel>(WorkerNavigationService);
             LoadWorkerCommand = new LoadWorkersCommand(gymStore, this);
-            MenuCommand = new NavigateCommand<LoggedAdminViewModel>(MenuNavigationService);
+            MenuCommand = new NavigateCommand<MainMenuViewModel>(MenuNavigationService);
         }
 
-        public static WorkerListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> makeWorkerNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public static WorkerListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeWorkerViewModel> makeWorkerNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             WorkerListingViewModel viewModel = new WorkerListingViewModel(gymStore, makeWorkerNavigationService, MenuNavigationService);
 

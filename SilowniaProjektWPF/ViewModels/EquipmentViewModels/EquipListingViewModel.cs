@@ -18,16 +18,16 @@ namespace SilowniaProjektWPF.ViewModels
         public ICommand LoadEquipmentCommand { get; }
         public ICommand MenuCommand { get; }
 
-        public EquipListingViewModel(GymStore gymStore, NavigationService<MakeEquipmentViewModel> EquipmentNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public EquipListingViewModel(GymStore gymStore, NavigationService<MakeEquipmentViewModel> EquipmentNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             _equipment = new ObservableCollection<EquipmentViewModel>();
 
             NewEquipmentCommand = new NavigateCommand<MakeEquipmentViewModel>(EquipmentNavigationService);
             LoadEquipmentCommand = new LoadEquipmentCommand(gymStore, this);
-            MenuCommand = new NavigateCommand<LoggedAdminViewModel>(MenuNavigationService);
+            MenuCommand = new NavigateCommand<MainMenuViewModel>(MenuNavigationService);
         }
 
-        public static EquipListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeEquipmentViewModel> makeEquipmentNavigationService, NavigationService<LoggedAdminViewModel> MenuNavigationService)
+        public static EquipListingViewModel LoadViewModel(GymStore gymStore, NavigationService<MakeEquipmentViewModel> makeEquipmentNavigationService, NavigationService<MainMenuViewModel> MenuNavigationService)
         {
             EquipListingViewModel viewModel = new EquipListingViewModel(gymStore, makeEquipmentNavigationService, MenuNavigationService);
 

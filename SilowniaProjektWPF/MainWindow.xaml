@@ -17,11 +17,11 @@
             <DataTemplate DataType="{x:Type vms:ReservationListingViewModel}">
                 <views:ReservationListingView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:LoginViewModel}">
-                <views:LoginView />
+            <DataTemplate DataType="{x:Type vms:StartAppViewModel}">
+                <views:StartAppView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:LoggedAdminViewModel}">
-                <views:LoggedAdminView />
+            <DataTemplate DataType="{x:Type vms:MainMenuViewModel}">
+                <views:MainMenuView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:MakeWorkerViewModel}">
                 <views:MakeWorkerView />

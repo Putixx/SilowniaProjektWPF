@@ -4,14 +4,14 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
-    public class LoggedAdminViewModel : ViewModelBase
+    public class MainMenuViewModel : ViewModelBase
     {
         public ICommand ManageWorkersCommand { get; }
         public ICommand ManageClientsCommand { get; }
         public ICommand ManageEquipCommand { get; }
         public ICommand ManageReservationsCommand { get; }
 
-        public LoggedAdminViewModel(NavigationService<WorkerListingViewModel> ManageWorkersNavigationService, NavigationService<ClientListingViewModel> ManageClientsNavigationService, NavigationService<EquipListingViewModel> ManageEquipNavigationService, NavigationService<ReservationListingViewModel> ManageReservationsNavigationService)
+        public MainMenuViewModel(NavigationService<WorkerListingViewModel> ManageWorkersNavigationService, NavigationService<ClientListingViewModel> ManageClientsNavigationService, NavigationService<EquipListingViewModel> ManageEquipNavigationService, NavigationService<ReservationListingViewModel> ManageReservationsNavigationService)
         {
             ManageWorkersCommand = new NavigateCommand<WorkerListingViewModel>(ManageWorkersNavigationService);
             ManageClientsCommand = new NavigateCommand<ClientListingViewModel>(ManageClientsNavigationService);

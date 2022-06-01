@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SilowniaProjektWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy LoginView.xaml
+    /// Logika interakcji dla klasy StartAppView.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class StartAppView : UserControl
     {
-        public LoginView()
+        public StartAppView()
         {
             InitializeComponent();
         }
