@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.DAL.Models
 {
+    /// <summary>
+    /// Model for worker
+    /// </summary>
     public class Worker
     {
         public string InstructorIndex { get; }

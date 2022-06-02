@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.DAL.Models
 {
+    /// <summary>
+    /// Model for reservations
+    /// </summary>
     public class Reservation
     {
         public string PassNumber { get; }
@@ -31,6 +34,11 @@ namespace SilowniaProjektWPF.DAL.Models
             return HashCode.Combine(PassNumber, InstructorIndex, StartDate, EndDate);
         }
 
+        /// <summary>
+        /// Checks if there is a conflict with existing reservations
+        /// </summary>
+        /// <param name="reservation"> New reservation </param>
+        /// <returns> false if there is not a conflict true if there is a conflict </returns>
         public bool Conflicts(Reservation reservation)
         {
             if (reservation.InstructorIndex != InstructorIndex) return false;

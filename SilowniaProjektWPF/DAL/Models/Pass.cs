@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.DAL.Models
 {
+    /// <summary>
+    /// Model for pass
+    /// </summary>
     public class Pass
     {
         public string PassNumber { get; }

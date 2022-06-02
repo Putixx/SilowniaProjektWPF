@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.DAL.Models
 {
+    /// <summary>
+    /// Model for equipment
+    /// </summary>
     public class Equipment
     {
         public string Name { get; }

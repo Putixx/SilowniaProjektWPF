@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.DAL.Models
 {
+    /// <summary>
+    /// Model for client
+    /// </summary>
     public class Client
     {
         public string Name { get; }

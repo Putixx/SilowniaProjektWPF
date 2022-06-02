@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SilowniaProjektWPF.DAL.ModelsDTO
 {
+    /// <summary>
+    /// Database transfer model for client
+    /// </summary>
     public class ClientDTO
     {
         [Key]

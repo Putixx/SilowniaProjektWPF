@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SilowniaProjektWPF.DAL.ModelsDTO
 {
+    /// <summary>
+    /// Database transfer model for worker
+    /// </summary>
     public class WorkerDTO
     {
         [Key]
