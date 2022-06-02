@@ -7,8 +7,16 @@ using System;
 
 namespace SilowniaProjektWPF.HostBuilders
 {
+    /// <summary>
+    /// Extension class for IHostBuilder
+    /// </summary>
     public static class AddViewModelsHostBuilderExtenstions
     {
+        /// <summary>
+        /// Extends IHost builder to separate adding views to another file
+        /// </summary>
+        /// <param name="hostBuilder"> host builder of application </param>
+        /// <returns> host builder of application with added views </returns>
         public static IHostBuilder AddViewModels(this IHostBuilder hostBuilder)
         {
             hostBuilder.ConfigureServices(services =>
@@ -60,6 +68,11 @@ namespace SilowniaProjektWPF.HostBuilders
             return hostBuilder;
         }
 
+        /// <summary>
+        /// Create view model for ClientListingViewModel
+        /// </summary>
+        /// <param name="s"> host builder services </param>
+        /// <returns> created ClientListingViewModel </returns>
         private static ClientListingViewModel CreateClientListingViewModel(IServiceProvider s)
         {
             return ClientListingViewModel.LoadViewModel(
@@ -69,6 +82,11 @@ namespace SilowniaProjektWPF.HostBuilders
                 );
         }
 
+        /// <summary>
+        /// Create view model for EquipListingViewModel
+        /// </summary>
+        /// <param name="s"> host builder services </param>
+        /// <returns> created EquipListingViewModel </returns>
         private static EquipListingViewModel CreateEquipListingViewModel(IServiceProvider s)
         {
             return EquipListingViewModel.LoadViewModel(
@@ -78,6 +96,11 @@ namespace SilowniaProjektWPF.HostBuilders
                 );
         }
 
+        /// <summary>
+        /// Create view model for WorkerListingViewModel
+        /// </summary>
+        /// <param name="s"> host builder services </param>
+        /// <returns> created WorkerListingViewModel </returns>
         private static WorkerListingViewModel CreateWorkerListingViewModel(IServiceProvider s)
         {
             return WorkerListingViewModel.LoadViewModel(
@@ -87,6 +110,11 @@ namespace SilowniaProjektWPF.HostBuilders
                 );
         }
 
+        /// <summary>
+        /// Create view model for ReservationListingViewModel
+        /// </summary>
+        /// <param name="s"> host builder services </param>
+        /// <returns> created ReservationListingViewModel </returns>
         private static ReservationListingViewModel CreateReservationListingViewModel(IServiceProvider s)
         {
             return ReservationListingViewModel.LoadViewModel(
