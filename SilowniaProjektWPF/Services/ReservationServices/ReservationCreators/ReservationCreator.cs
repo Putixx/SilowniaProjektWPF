@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Services.ReservationCreators
 {
+    /// <summary>
+    /// Implementation of reservation creator
+    /// </summary>
     public class ReservationCreator : IReservationCreator
     {
         private readonly GymDbContextFactory _dbContextFactory;
@@ -14,6 +17,10 @@ namespace SilowniaProjektWPF.Services.ReservationCreators
             _dbContextFactory = dbContextFactory;
         }
 
+        /// <summary>
+        /// Create reservation
+        /// </summary>
+        /// <param name="reservation"> Reservation to create</param>
         public async Task CreateReservation(Reservation reservation)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -25,6 +32,11 @@ namespace SilowniaProjektWPF.Services.ReservationCreators
             }
         }
 
+        /// <summary>
+        /// Convert to reservation database transfer object from reservation model
+        /// </summary>
+        /// <param name="reservation"> Reservation to convert </param>
+        /// <returns> ReservationDTO </returns>
         private ReservationDTO ToReservationDTO(Reservation reservation)
         {
             return new ReservationDTO()

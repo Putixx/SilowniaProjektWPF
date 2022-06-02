@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Services.ReservationProviders
 {
+    /// <summary>
+    /// Implementation of reservation provider
+    /// </summary>
     public class ReservationProvider : IReservationProvider
     {
         private readonly GymDbContextFactory _dbContextFactory;
@@ -17,6 +20,10 @@ namespace SilowniaProjektWPF.Services.ReservationProviders
             _dbContextFactory = dbContextFactory;
         }
 
+        /// <summary>
+        /// Get all reservations
+        /// </summary>
+        /// <returns> IEnumerable<Reservation> from database </returns>
         public async Task<IEnumerable<Reservation>> GetAllReservations()
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -27,6 +34,11 @@ namespace SilowniaProjektWPF.Services.ReservationProviders
             }
         }
 
+        /// <summary>
+        /// Converts reservation database transfer object to reservation model
+        /// </summary>
+        /// <param name="r"> reservation to convert </param>
+        /// <returns> Reservation model </returns>
         private static Reservation ToReservation(ReservationDTO r)
         {
             return new Reservation(r.PassNumber, r.InstructorIndex, r.StartDate, r.EndDate);

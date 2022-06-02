@@ -18,6 +18,10 @@ namespace SilowniaProjektWPF.Services.ClientProviders
             _dbContextFactory = dbContextFactory;
         }
 
+        /// <summary>
+        /// Get all clients from database
+        /// </summary>
+        /// <returns> IEnumerable<Client> from database </returns>
         public async Task<IEnumerable<Client>> GetClients()
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -28,11 +32,10 @@ namespace SilowniaProjektWPF.Services.ClientProviders
             }
         }
 
-        private static Client ToClient(ClientDTO c)
-        {
-            return new Client(c.Name, c.Surname, c.PhoneNumber, c.PassNumber);
-        }
-
+        /// <summary>
+        /// Create new client
+        /// </summary>
+        /// <param name="Client"> client to create </param>
         public async Task CreateClient(Client Client)
         {
             Client conflictingClient = await CheckIfExists(Client);
@@ -57,17 +60,11 @@ namespace SilowniaProjektWPF.Services.ClientProviders
             }
         }
 
-        private ClientDTO ToClientDTO(Client Client)
-        {
-            return new ClientDTO()
-            {
-                Name = Client.Name,
-                Surname = Client.Surname,
-                PhoneNumber = Client.PhoneNumber,
-                PassNumber = Client.PassNumber
-            };
-        }
-
+        /// <summary>
+        /// Checks if given client exists
+        /// </summary>
+        /// <param name="Client"> client to check </param>
+        /// <returns> client if exists, otherwise null </returns>
         private async Task<Client> CheckIfExists(Client Client)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -83,6 +80,11 @@ namespace SilowniaProjektWPF.Services.ClientProviders
             }
         }
 
+        /// <summary>
+        /// Checks if there is already client with given phone number
+        /// </summary>
+        /// <param name="Client"> client to check </param>
+        /// <returns> client if exists, otherwise null</returns>
         private async Task<Client> CheckIfSameNumber(Client Client)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -93,6 +95,32 @@ namespace SilowniaProjektWPF.Services.ClientProviders
 
                 return ToClient(ClientDTO);
             }
+        }
+
+        /// <summary>
+        /// Converts client database transfer object to client model
+        /// </summary>
+        /// <param name="c"> clientDTO to convert </param>
+        /// <returns> Client </returns>
+        private static Client ToClient(ClientDTO c)
+        {
+            return new Client(c.Name, c.Surname, c.PhoneNumber, c.PassNumber);
+        }
+
+        /// <summary>
+        /// Converts client model to client database transfer object
+        /// </summary>
+        /// <param name="c"> client to convert </param>
+        /// <returns> ClientDTO </returns>
+        private ClientDTO ToClientDTO(Client Client)
+        {
+            return new ClientDTO()
+            {
+                Name = Client.Name,
+                Surname = Client.Surname,
+                PhoneNumber = Client.PhoneNumber,
+                PassNumber = Client.PassNumber
+            };
         }
     }
 }

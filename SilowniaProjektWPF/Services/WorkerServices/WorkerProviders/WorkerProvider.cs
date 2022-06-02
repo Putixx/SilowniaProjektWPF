@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Services.WorkerProviders
 {
+    /// <summary>
+    /// Implementation of worker provider
+    /// </summary>
     public class WorkerProvider : IWorkerProvider
     {
         private readonly GymDbContextFactory _dbContextFactory;
@@ -18,6 +21,10 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
             _dbContextFactory = dbContextFactory;
         }
 
+        /// <summary>
+        /// Get all workers from database
+        /// </summary>
+        /// <returns> IEnumerable<Worker> from database </returns>
         public async Task<IEnumerable<Worker>> GetWorkers()
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -28,11 +35,9 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
             }
         }
 
-        private static Worker ToWorker(WorkerDTO w)
-        {
-            return new Worker(w.InstructorIndex, w.Name, w.Surname, w.PhoneNumber, w.Specialization, w.HourlyCost);
-        }
-
+        /// <summary>
+        /// Create new worker
+        /// </summary>
         public async Task CreateWorker(Worker worker)
         {
             Worker conflictingWorker = await CheckIfExists(worker);
@@ -57,19 +62,10 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
             }
         }
 
-        private WorkerDTO ToWorkerDTO(Worker worker)
-        {
-            return new WorkerDTO()
-            {
-                InstructorIndex = worker.InstructorIndex,
-                Name = worker.Name,
-                Surname = worker.Surname,
-                PhoneNumber = worker.PhoneNumber,
-                Specialization = worker.Specialization,
-                HourlyCost = worker.HourlyCost.ToString()
-            };
-        }
-
+        /// <summary>
+        /// Check if given worker is already in database
+        /// </summary>
+        /// <returns> Worker model </returns>
         private async Task<Worker> CheckIfExists(Worker worker)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -88,6 +84,10 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
             }
         }
 
+        /// <summary>
+        /// Checks if there is already worker with given phone number
+        /// </summary>
+        /// <returns> Worker model </returns>
         private async Task<Worker> CheckIfSameNumber(Worker worker)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
@@ -98,6 +98,32 @@ namespace SilowniaProjektWPF.Services.WorkerProviders
 
                 return ToWorker(workerDTO);
             }
+        }
+
+        /// <summary>
+        /// Converts to worker from worker database transfer object
+        /// </summary>
+        /// <returns> Worker model </returns>
+        private static Worker ToWorker(WorkerDTO w)
+        {
+            return new Worker(w.InstructorIndex, w.Name, w.Surname, w.PhoneNumber, w.Specialization, w.HourlyCost);
+        }
+
+        /// <summary>
+        /// Converts from worker database transfer object to worker
+        /// </summary>
+        /// <returns> WorkerDTO model </returns>
+        private WorkerDTO ToWorkerDTO(Worker worker)
+        {
+            return new WorkerDTO()
+            {
+                InstructorIndex = worker.InstructorIndex,
+                Name = worker.Name,
+                Surname = worker.Surname,
+                PhoneNumber = worker.PhoneNumber,
+                Specialization = worker.Specialization,
+                HourlyCost = worker.HourlyCost.ToString()
+            };
         }
     }
 }
