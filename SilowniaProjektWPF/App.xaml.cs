@@ -15,7 +15,6 @@ using SilowniaProjektWPF.Services.WorkerProviders;
 using SilowniaProjektWPF.HostBuilders;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
-using System;
 using System.Windows;
 
 namespace SilowniaProjektWPF

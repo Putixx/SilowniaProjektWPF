@@ -16,7 +16,7 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<Reservation> GetConflictReservation(Reservation reservation)
+        public async Task<bool> IsConflictReservation(Reservation reservation)
         {
             using (GymDbContext context = _dbContextFactory.CreateDbContext())
             {
@@ -25,9 +25,33 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
                     .Where(r => r.EndDate >= reservation.StartDate)
                     .FirstOrDefaultAsync();
 
-                if (reservationDTO == null) return null;
+                if (reservationDTO == null) return false;
 
-                return ToReservation(reservationDTO);
+                return true;
+            }
+        }
+
+        public async Task<bool> IsWorkerExisting(string InstructorIndex)
+        {
+            using (GymDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                WorkerDTO workerDTO = await context.Workers.Where(w => w.InstructorIndex == InstructorIndex).FirstOrDefaultAsync();
+
+                if (workerDTO == null) return false;
+
+                return true;
+            }
+        }
+
+        public async Task<bool> IsClientExisting(string PassNumber)
+        {
+            using (GymDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                ClientDTO clientDTO = await context.Clients.Where(c => c.PassNumber == PassNumber).FirstOrDefaultAsync();
+
+                if (clientDTO == null) return false;
+
+                return true;
             }
         }
 

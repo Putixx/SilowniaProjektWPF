@@ -8,6 +8,8 @@ namespace SilowniaProjektWPF.Exceptions
         public Reservation ExistingReservation { get; }
         public Reservation IncomingReservation { get; }
 
+        public ReservationConflictException() { }
+
         public ReservationConflictException(Reservation existingReservation, Reservation incomingReservation)
         {
             ExistingReservation = existingReservation;

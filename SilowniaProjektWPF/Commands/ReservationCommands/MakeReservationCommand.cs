@@ -1,5 +1,6 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
+using SilowniaProjektWPF.Exceptions.ReservationExceptions;
 using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
@@ -14,13 +15,11 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;
         private readonly GymStore _gymStore;
-        private readonly NavigationService<ReservationListingViewModel> _reservationNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, GymStore GymStore, NavigationService<ReservationListingViewModel> ReservationNavigationService)
+        public MakeReservationCommand(MakeReservationViewModel MakeReservationViewModel, GymStore GymStore)
         {
             _makeReservationViewModel = MakeReservationViewModel;
             _gymStore = GymStore;
-            _reservationNavigationService = ReservationNavigationService;
 
             _makeReservationViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
@@ -47,6 +46,14 @@ namespace SilowniaProjektWPF.Commands
             catch(ReservationConflictException)
             {
                 MessageBox.Show("Already reserved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (ReservationWorkerNotExistingException)
+            {
+                MessageBox.Show("There is no such instructor.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (ReservationClientNotExistingException)
+            {
+                MessageBox.Show("There is no such client.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception)
             {

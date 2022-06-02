@@ -5,6 +5,8 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
 {
     public interface IReservationConflictValidator
     {
-        Task<Reservation> GetConflictReservation(Reservation reservation);
+        Task<bool> IsConflictReservation(Reservation reservation);
+        Task<bool> IsWorkerExisting(string InstructorIndex);
+        Task<bool> IsClientExisting(string PassNumber);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SilowniaProjektWPF.Exceptions;
+using SilowniaProjektWPF.Exceptions.ReservationExceptions;
 using SilowniaProjektWPF.Services.ReservationConflictValidators;
 using SilowniaProjektWPF.Services.ReservationCreators;
 using SilowniaProjektWPF.Services.ReservationProviders;
@@ -27,11 +28,19 @@ namespace SilowniaProjektWPF.DAL.Models
 
         public async Task AddReservation(Reservation reservation)
         {
-            Reservation conflictingReservation = await _reservationConflictValidator.GetConflictReservation(reservation);
-
-            if(conflictingReservation != null)
+            if(await _reservationConflictValidator.IsConflictReservation(reservation))
             {
-                throw new ReservationConflictException(conflictingReservation, reservation);
+                throw new ReservationConflictException();
+            }
+
+            if (!await _reservationConflictValidator.IsWorkerExisting(reservation.InstructorIndex))
+            {
+                throw new ReservationWorkerNotExistingException();
+            }
+
+            if (!await _reservationConflictValidator.IsClientExisting(reservation.PassNumber))
+            {
+                throw new ReservationClientNotExistingException();
             }
 
             await _reservationCreator.CreateReservation(reservation);
