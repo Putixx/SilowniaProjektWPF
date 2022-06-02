@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Command base for buttons that are not used async
+    /// </summary>
     public abstract class CommandBase : ICommand
     {
         public event EventHandler CanExecuteChanged;

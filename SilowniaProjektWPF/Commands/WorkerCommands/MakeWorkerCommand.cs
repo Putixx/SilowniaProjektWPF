@@ -9,6 +9,9 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that adds new workers
+    /// </summary>
     public class MakeWorkerCommand : AsyncCommandBase
     {
         private readonly MakeWorkerViewModel _makeWorkerViewModel;

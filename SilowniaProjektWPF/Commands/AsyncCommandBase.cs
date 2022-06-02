@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Command base for buttons that are used async
+    /// </summary>
     public abstract class AsyncCommandBase : CommandBase
     {
         private bool _isExecuting;

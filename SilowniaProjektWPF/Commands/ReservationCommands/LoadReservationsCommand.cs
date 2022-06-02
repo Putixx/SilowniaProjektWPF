@@ -6,6 +6,9 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that load actual reservations from database
+    /// </summary>
     public class LoadReservationsCommand : AsyncCommandBase
     {
         private readonly GymStore _gymStore;

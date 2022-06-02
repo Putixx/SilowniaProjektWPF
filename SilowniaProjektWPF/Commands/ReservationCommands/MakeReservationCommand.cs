@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that adds new reservations
+    /// </summary>
     public class MakeReservationCommand : AsyncCommandBase
     {
         private readonly MakeReservationViewModel _makeReservationViewModel;

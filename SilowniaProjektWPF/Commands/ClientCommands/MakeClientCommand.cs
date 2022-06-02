@@ -9,6 +9,9 @@ using SilowniaProjektWPF.Exceptions;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that adds new clients
+    /// </summary>
     public class MakeClientCommand : AsyncCommandBase
     {
         private readonly MakeClientViewModel _makeClientViewModel;

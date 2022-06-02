@@ -9,6 +9,9 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that adds new equipment
+    /// </summary>
     public class MakeEquipCommand : AsyncCommandBase
     {
         private readonly MakeEquipmentViewModel _makeEquipmentViewModel;

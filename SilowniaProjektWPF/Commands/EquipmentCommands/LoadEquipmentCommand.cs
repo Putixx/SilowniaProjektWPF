@@ -6,6 +6,9 @@ using System.Windows;
 
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button that load actual equipment from database
+    /// </summary>
     public class LoadEquipmentCommand : AsyncCommandBase
     {
         private readonly GymStore _gymStore;

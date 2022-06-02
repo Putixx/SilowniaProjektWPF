@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SilowniaProjektWPF.Commands
 {
+    /// <summary>
+    /// Logic for button used to exit application
+    /// </summary>
     public class QuitApplicationCommand : CommandBase
     {
         public override void Execute(object parameter)
