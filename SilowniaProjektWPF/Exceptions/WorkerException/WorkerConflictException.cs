@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add worker that is already in database
+    /// </summary>
     public class WorkerConflictException : Exception
     {
         public Worker ExistingWorker { get; }

@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add pass that is already in database
+    /// </summary>
     public class PassConflictException : Exception
     {
         public Pass ExistingPass { get; }

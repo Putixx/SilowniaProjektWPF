@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add equipment that is already in database
+    /// </summary>
     public class EquipmentConflictException : Exception
     {
         public Equipment ExistingEquipment { get; }

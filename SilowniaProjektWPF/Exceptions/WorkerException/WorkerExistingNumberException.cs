@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add new worker with same number as existing one
+    /// </summary>
     public class WorkerExistingNumberException : Exception
     {
         public Worker ExistingWorker { get; }

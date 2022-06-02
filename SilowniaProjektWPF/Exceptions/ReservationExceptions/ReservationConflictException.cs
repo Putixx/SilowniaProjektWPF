@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add new reservation same as existing one
+    /// </summary>
     public class ReservationConflictException : Exception
     {
         public Reservation ExistingReservation { get; }

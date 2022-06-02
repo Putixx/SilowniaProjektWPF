@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions
 {
+    /// <summary>
+    /// Exception when trying to add new client with same number as existing one
+    /// </summary>
     public class ClientExistingNumberException : Exception
     {
         public Client ExistingClient { get; }

@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Exceptions.ReservationExceptions
 {
+    /// <summary>
+    /// Exception when trying to add new reservation for client that is not in database
+    /// </summary>
     public class ReservationClientNotExistingException : Exception
     {
         public Reservation ExistingReservation { get; }
