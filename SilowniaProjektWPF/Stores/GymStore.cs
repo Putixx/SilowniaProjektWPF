@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace SilowniaProjektWPF.Stores
 {
+    /// <summary>
+    /// Gym store 
+    /// </summary>
     public class GymStore
     {
         private readonly List<Reservation> _reservations;
@@ -30,11 +33,18 @@ namespace SilowniaProjektWPF.Stores
             _gym = gym;
         }
 
+        /// <summary>
+        /// Load data from database
+        /// </summary>
         public async Task Load()
         {
             await _initializeLazy.Value;
         }
 
+        /// <summary>
+        /// Make new reservation
+        /// </summary>
+        /// <param name="reservation"> reservation to make </param>
         public async Task MakeReservation(Reservation reservation)
         {
             await _gym.MakeReservation(reservation);
@@ -42,6 +52,10 @@ namespace SilowniaProjektWPF.Stores
             _reservations.Add(reservation);
         }
 
+        /// <summary>
+        /// Add new worker
+        /// </summary>
+        /// <param name="worker"> worker to add </param>
         public async Task MakeWorker(Worker worker)
         {
             await _gym.MakeWorker(worker);
@@ -49,6 +63,10 @@ namespace SilowniaProjektWPF.Stores
             _workers.Add(worker);
         }
 
+        /// <summary>
+        /// Add new equipment
+        /// </summary>
+        /// <param name="equipment"> equipment to add </param>
         public async Task MakeEquipment(Equipment equipment)
         {
             await _gym.MakeEquipment(equipment);
@@ -56,6 +74,10 @@ namespace SilowniaProjektWPF.Stores
             _equipment.Add(equipment);
         }
 
+        /// <summary>
+        /// Add new client
+        /// </summary>
+        /// <param name="client"> client to add </param>
         public async Task MakeClient(Client client)
         {
             await _gym.MakeClient(client);
@@ -63,11 +85,18 @@ namespace SilowniaProjektWPF.Stores
             _clients.Add(client);
         }
 
+        /// <summary>
+        /// Add new pass
+        /// </summary>
+        /// <param name="pass"> pass to add </param>
         public async Task MakePass(Pass pass)
         {
             await _gym.MakePass(pass);
         }
 
+        /// <summary>
+        /// Initalize data from database
+        /// </summary>
         private async Task Initialize()
         {
             IEnumerable<Reservation> reservations = await _gym.GetAllReservations();

@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.Stores
 {
+    /// <summary>
+    /// Navigation store
+    /// </summary>
     public class NavigationStore
     {
         private ViewModelBase _currentViewModel;
