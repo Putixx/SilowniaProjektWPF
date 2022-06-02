@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace SilowniaProjektWPF.Converters
 {
+    /// <summary>
+    /// Logic for Loading screen while data is loading from database
+    /// </summary>
     public class InverseBooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
