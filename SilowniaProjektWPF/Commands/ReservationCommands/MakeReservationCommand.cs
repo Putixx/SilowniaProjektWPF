@@ -1,7 +1,6 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
 using SilowniaProjektWPF.Exceptions.ReservationExceptions;
-using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;

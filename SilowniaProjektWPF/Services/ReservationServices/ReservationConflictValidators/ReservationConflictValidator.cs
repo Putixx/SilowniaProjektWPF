@@ -54,10 +54,5 @@ namespace SilowniaProjektWPF.Services.ReservationConflictValidators
                 return true;
             }
         }
-
-        private static Reservation ToReservation(ReservationDTO r)
-        {
-            return new Reservation(r.PassNumber, r.InstructorIndex, r.StartDate, r.EndDate);
-        }
     }
 }

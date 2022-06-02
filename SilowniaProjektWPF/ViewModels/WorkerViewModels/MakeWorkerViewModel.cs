@@ -78,7 +78,7 @@ namespace SilowniaProjektWPF.ViewModels
 
         public MakeWorkerViewModel(GymStore GymStore, NavigationService<WorkerListingViewModel> WorkerNavigationService)
         {
-            SubmitCommand = new MakeWorkerCommand(this, GymStore, WorkerNavigationService);
+            SubmitCommand = new MakeWorkerCommand(this, GymStore);
             CancelCommand = new NavigateCommand<WorkerListingViewModel>(WorkerNavigationService);
         }
     }

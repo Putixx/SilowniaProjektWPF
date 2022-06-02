@@ -1,5 +1,4 @@
-﻿using SilowniaProjektWPF.Services;
-using SilowniaProjektWPF.Stores;
+﻿using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using SilowniaProjektWPF.DAL.Models;
 using System;
@@ -14,13 +13,11 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeClientViewModel _makeClientViewModel;
         private readonly GymStore _gymStore;
-        private readonly NavigationService<ClientListingViewModel> _ClientNavigationService;
 
-        public MakeClientCommand(MakeClientViewModel MakeClientViewModel, GymStore GymStore, NavigationService<ClientListingViewModel> ClientNavigationService)
+        public MakeClientCommand(MakeClientViewModel MakeClientViewModel, GymStore GymStore)
         {
             _makeClientViewModel = MakeClientViewModel;
             _gymStore = GymStore;
-            _ClientNavigationService = ClientNavigationService;
 
             _makeClientViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }

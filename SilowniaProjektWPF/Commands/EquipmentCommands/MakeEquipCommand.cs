@@ -1,6 +1,5 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
-using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
@@ -14,13 +13,11 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeEquipmentViewModel _makeEquipmentViewModel;
         private readonly GymStore _gymStore;
-        private readonly NavigationService<EquipListingViewModel> _equipNavigationService;
 
-        public MakeEquipCommand(MakeEquipmentViewModel MakeEquipViewModel, GymStore GymStore, NavigationService<EquipListingViewModel> EquipNavigationService)
+        public MakeEquipCommand(MakeEquipmentViewModel MakeEquipViewModel, GymStore GymStore)
         {
             _makeEquipmentViewModel = MakeEquipViewModel;
             _gymStore = GymStore;
-            _equipNavigationService = EquipNavigationService;
 
             _makeEquipmentViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }

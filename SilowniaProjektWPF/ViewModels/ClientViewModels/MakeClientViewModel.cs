@@ -90,7 +90,7 @@ namespace SilowniaProjektWPF.ViewModels
 
         public MakeClientViewModel(GymStore GymStore, NavigationService<ClientListingViewModel> ClientNavigationService)
         {
-            SubmitCommand = new MakeClientCommand(this, GymStore, ClientNavigationService);
+            SubmitCommand = new MakeClientCommand(this, GymStore);
             CancelCommand = new NavigateCommand<ClientListingViewModel>(ClientNavigationService);
         }
     }

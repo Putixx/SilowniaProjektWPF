@@ -1,6 +1,5 @@
 ﻿using SilowniaProjektWPF.DAL.Models;
 using SilowniaProjektWPF.Exceptions;
-using SilowniaProjektWPF.Services;
 using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System;
@@ -14,13 +13,11 @@ namespace SilowniaProjektWPF.Commands
     {
         private readonly MakeWorkerViewModel _makeWorkerViewModel;
         private readonly GymStore _gymStore;
-        private readonly NavigationService<WorkerListingViewModel> _workerNavigationService;
 
-        public MakeWorkerCommand(MakeWorkerViewModel MakeWorkerViewModel, GymStore GymStore, NavigationService<WorkerListingViewModel> WorkerNavigationService)
+        public MakeWorkerCommand(MakeWorkerViewModel MakeWorkerViewModel, GymStore GymStore)
         {
             _makeWorkerViewModel = MakeWorkerViewModel;
             _gymStore = GymStore;
-            _workerNavigationService = WorkerNavigationService;
 
             _makeWorkerViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }

@@ -17,12 +17,11 @@ using SilowniaProjektWPF.Stores;
 using SilowniaProjektWPF.ViewModels;
 using System.Windows;
 
+// Publish
+// dotnet publish -c Release --self-contained=true -p:PublishSingleFile=true
+
 namespace SilowniaProjektWPF
 {
-    // Publish
-    // dotnet publish -c Release --self-contained=true -p:PublishSingleFile=true
-
-
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

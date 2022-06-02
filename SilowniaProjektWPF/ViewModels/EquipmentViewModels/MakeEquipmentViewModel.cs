@@ -57,7 +57,7 @@ namespace SilowniaProjektWPF.ViewModels
 
         public MakeEquipmentViewModel(GymStore GymStore, NavigationService<EquipListingViewModel> EquipNavigationService)
         {
-            SubmitCommand = new MakeEquipCommand(this, GymStore, EquipNavigationService);
+            SubmitCommand = new MakeEquipCommand(this, GymStore);
             CancelCommand = new NavigateCommand<EquipListingViewModel>(EquipNavigationService);
         }
     }
