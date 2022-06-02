@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Client view model
+    /// </summary>
     public class ClientViewModel : ViewModelBase
     {
         private readonly Client _client;

@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Create reservation view model
+    /// </summary>
     public class MakeReservationViewModel : ViewModelBase
     {
         private string _passNumber;

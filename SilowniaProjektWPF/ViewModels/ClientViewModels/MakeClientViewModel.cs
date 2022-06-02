@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Create client view model
+    /// </summary>
     public class MakeClientViewModel : ViewModelBase
     {
         private string _name;

@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// worker view model
+    /// </summary>
     public class WorkerViewModel : ViewModelBase
     {
         private readonly Worker _workers;

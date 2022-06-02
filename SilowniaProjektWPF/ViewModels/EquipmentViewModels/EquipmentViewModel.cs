@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Equipment view model
+    /// </summary>
     public class EquipmentViewModel : ViewModelBase
     {
         private readonly Equipment _equipment;

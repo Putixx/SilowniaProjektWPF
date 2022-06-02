@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Pass view model
+    /// </summary>
     public class PassViewModel : ViewModelBase
     {
         private readonly Pass _pass;

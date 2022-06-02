@@ -4,6 +4,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Starting application view model
+    /// </summary>
     public class StartAppViewModel : ViewModelBase
     {
         public ICommand StartCommand { get; }

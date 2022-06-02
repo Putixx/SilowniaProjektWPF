@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Create equipment view model
+    /// </summary>
     public class MakeEquipmentViewModel : ViewModelBase
     {
         private string _name;

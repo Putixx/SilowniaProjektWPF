@@ -3,6 +3,9 @@ using System;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Reservation view model
+    /// </summary>
     public class ReservationViewModel : ViewModelBase
     {
         private readonly Reservation _reservation;

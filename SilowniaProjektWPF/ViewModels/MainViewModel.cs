@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Main view model
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;

@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Create worker view model
+    /// </summary>
     public class MakeWorkerViewModel : ViewModelBase
     {
         private string _instructorIndex;

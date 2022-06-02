@@ -2,6 +2,9 @@
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Base view model
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

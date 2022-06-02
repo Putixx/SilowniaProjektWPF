@@ -4,6 +4,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Main menu view model
+    /// </summary>
     public class MainMenuViewModel : ViewModelBase
     {
         public ICommand ManageWorkersCommand { get; }

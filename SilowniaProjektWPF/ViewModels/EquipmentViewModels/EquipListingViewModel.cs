@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace SilowniaProjektWPF.ViewModels
 {
+    /// <summary>
+    /// Equipment listing view model
+    /// </summary>
     public class EquipListingViewModel : ViewModelBase
     {
         private readonly ObservableCollection<EquipmentViewModel> _equipment;
